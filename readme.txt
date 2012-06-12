@@ -1,6 +1,7 @@
 === Plugin Name ===
 Contributors: omarke85
-Tags: birthday, calendar
+Tags: birthday, calendar, user, add-on, plugin
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
 Tested up to: 3.3.2
 Stable tag: 0.1.1
