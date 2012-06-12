@@ -1,0 +1,64 @@
+/*
+WP Switch style sheet for admin
+*/
+
+
+#icon-wp-birthday-users {
+	background: transparent url(images/birthday-admin-icon.png) no-repeat;
+}
+.input {
+  position: relative;
+}
+.preview {
+  position:absolute;
+  left: 375px;
+  top:0px;
+} 
+.adminstatus {
+  position:absolute;
+  left: 70px;
+  top:-20px;
+} 
+input[type=checkbox] {
+  display:none;
+  border: 1px solid green;
+}
+
+input[type=checkbox] + label {
+  background: transparent url(images/switchOffB.png) 0 0px no-repeat;
+  height: 32px;
+  width: 32px;
+  display:inline-block;
+  padding: 0 0 0 0px;
+}
+
+input[type=checkbox]:checked + label {
+  background: transparent url(images/switchOnB.png) 0 0px no-repeat;
+  height: 32px;
+  width: 32px;
+  display:inline-block;
+  padding: 0 0 0 0px;
+}
+xmp {
+  border: 1px solid #66666;
+  color: #333;
+}
+h4 {
+  margin: 5px;
+  padding: 2px;
+}
+p.user {
+  margin: 5px;
+  padding: 2px;
+  clear: all;
+}
+.date {
+  padding: 0 5px 0 0;
+  width: 70px;
+  float: left;
+  text-align: right;
+}
+.username {
+  min-width: 175px;
+  float: left;
+}
