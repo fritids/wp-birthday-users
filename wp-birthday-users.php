@@ -13,7 +13,7 @@ License: GPL2
 add_action('init', 'birthdayusers_textdomain');
 function birthdayusers_textdomain() {
   $plugin_dir = basename(dirname(__FILE__)) . '/lang';
-  load_plugin_textdomain( 'wp-birthdayusers', null, $plugin_dir );
+  load_plugin_textdomain( 'wp-birthday-users', null, $plugin_dir );
 }
 
 ### Load in the loop functions
@@ -23,7 +23,7 @@ require( 'functions.php' );
 add_action('admin_menu', 'birthday_users_page');
 function birthday_users_page() {
   if (function_exists('add_submenu_page')) {
-    add_submenu_page("users.php", __('Users Birthdays', 'wp-birthdayusers'), __('Users Birthdays', 'wp-birthdayusers'), 8, plugin_basename(__FILE__), 'birthdayusers_init');
+    add_submenu_page("users.php", __('Users Birthdays', 'wp-birthday-users'), __('Users Birthdays', 'wp-birthday-users'), 8, plugin_basename(__FILE__), 'birthdayusers_init');
   }
 } 
 
@@ -35,7 +35,7 @@ add_action( 'edit_user_profile_update', 'save_birthday_users_custom_fields' );
 
 ### Function: Birthday-Users init
 function birthdayusers_init() {
-  wp_enqueue_style('wp-birthdayusers-admin', plugins_url('wp-birthday-users/birthday-users-admin-css.css'), false, '0.1', 'all');
+  wp_enqueue_style('wp-birthday-users-admin', plugins_url('wp-birthday-users/birthday-users-admin-css.css'), false, '0.1', 'all');
   $blogusers = get_users('orderby=ID');
   $youngest = $oldest = date('Y-m-d')-45;
   $youngest_name = $oldest_name = "";
@@ -70,10 +70,10 @@ function birthdayusers_init() {
   $upcoming = '';
   foreach ($optionarray_def['come'] as $user_id => $user) {
     if ($user['birthday_newer'] == $optionarray_def['come'][$key-1]['birthday_newer']) {
-      $upcoming .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthdayusers').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $upcoming .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
     } else {
       $upcoming .= "<h4>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</h4>";
-      $upcoming .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthdayusers').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $upcoming .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
     }
     //echo "<div class=\"user\">".$user['birthday_date']." - ".$user['birthday_user']." (".age($user['birthday_date'])."j)</div>";
   }
@@ -81,10 +81,10 @@ function birthdayusers_init() {
   $passed = '';
   foreach ($optionarray_def['past'] as $key => $user) {
     if ($user['birthday_newer'] == $optionarray_def['past'][$key-1]['birthday_newer']) {
-      $passed .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthdayusers').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $passed .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
     } else {
       $passed .= "<h4>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</h4>";
-      $passed .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthdayusers').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $passed .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
     }
     //echo "<div class=\"user\">".$user['birthday_date']." - ".$user['birthday_user']." (".age($user['birthday_date'])."j)</div>";
   }
@@ -92,23 +92,23 @@ function birthdayusers_init() {
 ?>
 	<div class="wrap">
 		<div id="icon-wp-birthday-users" class="icon32"><br /></div>
-		<h2><?php _e('Birthdays', 'wp-birthdayusers'); ?></h2>
+		<h2><?php _e('Birthdays', 'wp-birthday-users'); ?></h2>
     <ul>
-      <li><em><?php printf(__('%1$s</em> of the %2$s registered user filled in there birthday.'), $usersbirthday, count($blogusers)); ?></li>
-      <li><strong><?php _e('Average age', 'wp-birthdayusers'); ?>:</strong> <em><?php echo round($averageage/$usersbirthday, 1) ?></em></li>
-      <li><strong><?php _e('Oldest user', 'wp-birthdayusers'); ?>:</strong> <em><?php echo $oldest_name ?></em></li>
-      <li><strong><?php _e('Youngest user', 'wp-birthdayusers'); ?>:</strong> <em><?php echo $youngest_name ?></em></li>
-      <li><strong><?php _e('Birthdays ICAL', 'wp-birthdayusers'); ?>:</strong> <em><a href="<?php echo $upload['baseurl']."/birthday.ics" ?>">birthday.ics</a></em></li>
+      <li><em><?php printf(__('%1$s</em> of the %2$s registered user filled in there birthday.', 'wp-birthday-users'), $usersbirthday, count($blogusers)); ?></li>
+      <li><strong><?php _e('Average age', 'wp-birthday-users'); ?>:</strong> <em><?php echo round($averageage/$usersbirthday, 1) ?></em></li>
+      <li><strong><?php _e('Oldest user', 'wp-birthday-users'); ?>:</strong> <em><?php echo $oldest_name ?></em></li>
+      <li><strong><?php _e('Youngest user', 'wp-birthday-users'); ?>:</strong> <em><?php echo $youngest_name ?></em></li>
+      <li><strong><?php _e('Birthdays ICAL', 'wp-birthday-users'); ?>:</strong> <em><a href="<?php echo $upload['baseurl']."/birthday.ics" ?>">birthday.ics</a></em></li>
     </ul>
     <div class="metabox-holder">
       <div class="postbox">
-        <div class="handlediv" title="Klik om te wisselen"><br /></div><h3><span class="upcoming">&nbsp;</span><?php _e('Upcoming birthdays', 'wp-birthdayusers'); ?></h3>
+        <div class="handlediv" title="Klik om te wisselen"><br /></div><h3><span class="upcoming">&nbsp;</span><?php _e('Upcoming birthdays', 'wp-birthday-users'); ?> - <small>( <?php echo count($optionarray_def['come'])." / ".$usersbirthday; ?> )</small></h3>
         <?php echo $upcoming; ?>
       </div>
     </div>
     <div class="metabox-holder">
       <div class="postbox">
-        <div class="handlediv" title="Klik om te wisselen"><br /></div><h3><span class="upcoming">&nbsp;</span><?php _e('Passed birthdays', 'wp-birthdayusers'); ?></h3>
+        <div class="handlediv" title="Klik om te wisselen"><br /></div><h3><span class="upcoming">&nbsp;</span><?php _e('Passed birthdays', 'wp-birthday-users'); ?> - <small>( <?php echo count($optionarray_def['past'])." / ".$usersbirthday; ?> )</small></h3>
         <?php echo $passed; ?>
       </div>
     </div>
@@ -152,7 +152,7 @@ function wp29r01_date_picker() {
 function list_birthdays() {
 	global $profileuser;
 	$user_id = $profileuser->ID;
-  wp_enqueue_style('wp-birthdayusers-admin', plugins_url('wp-birthday-users/css/smoothness/jquery-ui-1.8.20.custom.css'), false, '1.8.20', 'all');
+  wp_enqueue_style('wp-birthday-users-admin', plugins_url('wp-birthday-users/css/smoothness/jquery-ui-1.8.20.custom.css'), false, '1.8.20', 'all');
   $optionarray_def = array(
     'birthday_date'  => get_user_meta($user_id, 'birthday_date', true),
     'birthday_share' => get_user_meta($user_id, 'birthday_share', true),
@@ -171,23 +171,23 @@ function list_birthdays() {
         });
       });
     </script>
-    <h3><?php _e('Date of birth', 'wp-birthdayusers'); ?></h3>
+    <h3><?php _e('Date of birth', 'wp-birthday-users'); ?></h3>
     <table class="form-table">
       <tr>
         <th>
-          <label for="address"><?php _e('Birthday', 'wp-birthdayusers'); ?></label>
+          <label for="address"><?php _e('Birthday', 'wp-birthday-users'); ?></label>
         </th>
         <td>
           <input type="text" id="birthday_date" name="birthday_date" size="60" maxlength="100" value="<?php echo $optionarray_def['birthday_date']; ?>" dir="ltr" />
         </td>
       </tr>
       <tr>
-        <td><?php _e('Share anniversary info', 'wp-birthdayusers'); ?></td>
+        <td><?php _e('Share anniversary info', 'wp-birthday-users'); ?></td>
         <td><input name="birthday_share" type="checkbox" id="birthday_share" value="1" <?php checked('1', $optionarray_def['birthday_share']); ?> /></td>
       </tr>
       <tr>
-        <td><?php _e('Share age info', 'wp-birthdayusers'); ?></td>
-        <td><input name="birthday_age" type="checkbox" id="birthday_age" value="1" <?php checked('1', $optionarray_def['birthday_age']); ?> /> <span><em><?php printf(__('Show your age: %d y, and this only if you share your anniversary info.', 'wp-birthdayusers') , age($optionarray_def['birthday_date'])); ?></em></span></td>
+        <td><?php _e('Share age info', 'wp-birthday-users'); ?></td>
+        <td><input name="birthday_age" type="checkbox" id="birthday_age" value="1" <?php checked('1', $optionarray_def['birthday_age']); ?> /> <span><em><?php printf(__('Show your age: %d y, and this only if you share your anniversary info.', 'wp-birthday-users') , age($optionarray_def['birthday_date'])); ?></em></span></td>
       </tr>
     </table>
 <?php 
