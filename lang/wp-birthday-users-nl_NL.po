@@ -1,0 +1,78 @@
+# Copyright (C) 2012 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: wp birthday users 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
+"POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
+"PO-Revision-Date: 2012-06-12 09:53+0100\n"
+"Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
+"Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: BELGIUM\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: \\\\nasan1n\\internal\\wp-content\\plugins\\wp-birthday-users\n"
+
+#: wp-birthday-users.php:25
+msgid "Users Birthdays"
+msgstr "Verjaardagen"
+
+#: wp-birthday-users.php:72
+msgid "y"
+msgstr "j"
+
+#: wp-birthday-users.php:94
+msgid "Birthdays"
+msgstr "Verjaardagen"
+
+#: wp-birthday-users.php:96
+msgid "%1$s</em> of the %2$s registered user filled in there birthday."
+msgstr "%1$s</em> ingevulde verjaardagen van de %2$s geregistreerde gebruikers."
+
+#: wp-birthday-users.php:97
+msgid "Average age"
+msgstr "Gemiddelde leeftijd"
+
+#: wp-birthday-users.php:98
+msgid "Oldest user"
+msgstr "Oudste gebruiker"
+
+#: wp-birthday-users.php:99
+msgid "Youngest user"
+msgstr "Jongste gebruiker"
+
+#: wp-birthday-users.php:100
+msgid "Birthdays ICAL"
+msgstr "Verjaardags-ical"
+
+#: wp-birthday-users.php:104
+msgid "Upcoming birthdays"
+msgstr "Komende jarige"
+
+#: wp-birthday-users.php:110
+msgid "Passed birthdays"
+msgstr "Reeds verjaard"
+
+#: wp-birthday-users.php:173
+msgid "Date of birth"
+msgstr "Geboortedatum"
+
+#: wp-birthday-users.php:177
+msgid "Birthday"
+msgstr "Verjaardag"
+
+#: wp-birthday-users.php:184
+msgid "Share anniversary info"
+msgstr "Deel verjaardagsinfo"
+
+#: wp-birthday-users.php:188
+msgid "Share age info"
+msgstr "Deel leeftijdsinfo"
+
+#: wp-birthday-users.php:190
+msgid "Show your age: %d y, and this only if you share your anniversary info."
+msgstr "Toont je leeftijd: %d j, en dit enkel als je verjaardagsinfo deelt."
+
