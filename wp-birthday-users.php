@@ -3,7 +3,7 @@
 Plugin Name: WP Birthday Users
 Plugin URI: http://omar.reygaert.eu/wp/plugins/wp-birthday-users
 Plugin that adds birthday posts for the users.
-Version: 0.1
+Version: 0.1.1
 Author: Omar Reygaert
 Author URI: http://about.me/omar.reygaert
 License: GPL2
