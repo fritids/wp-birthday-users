@@ -3,7 +3,8 @@
 Plugin Name: WP Birthday Users
 Plugin URI: http://omar.reygaert.eu/wp/plugins/wp-birthday-users
 Plugin that adds birthday posts for the users.
-Version: 0.1.1
+Version: 0.1.2
+Domain Path: /lang
 Author: Omar Reygaert
 Author URI: http://about.me/omar.reygaert
 License: GPL2
@@ -70,24 +71,22 @@ function birthdayusers_init() {
   $upcoming = '';
   foreach ($optionarray_def['come'] as $user_id => $user) {
     if ($user['birthday_newer'] == $optionarray_def['come'][$key-1]['birthday_newer']) {
-      $upcoming .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
     } else {
-      $upcoming .= "<h4>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</h4>";
-      $upcoming .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $upcoming .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>";
+      $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
     }
-    //echo "<div class=\"user\">".$user['birthday_date']." - ".$user['birthday_user']." (".age($user['birthday_date'])."j)</div>";
-  }
+   }
   usort($optionarray_def['past'], 'date_sort');
   $passed = '';
   foreach ($optionarray_def['past'] as $key => $user) {
     if ($user['birthday_newer'] == $optionarray_def['past'][$key-1]['birthday_newer']) {
-      $passed .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
     } else {
-      $passed .= "<h4>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</h4>";
-      $passed .= "<p class=\"user\"><div class=\"date\">".$user['birthday_date']."</div> (".age($user['birthday_date']).__('y', 'wp-birthday-users').") <div class=\"username\"> - ".$user['birthday_user']."</div></p>";
+      $passed .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>";
+      $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
     }
-    //echo "<div class=\"user\">".$user['birthday_date']." - ".$user['birthday_user']." (".age($user['birthday_date'])."j)</div>";
-  }
+   }
   if(!empty($text)) { echo '<!-- Last Action --><div id="message" class="updated fade"><p>'.$text.'</p></div>'; }
 ?>
 	<div class="wrap">
@@ -103,15 +102,29 @@ function birthdayusers_init() {
     <div class="metabox-holder">
       <div class="postbox">
         <div class="handlediv" title="Klik om te wisselen"><br /></div><h3><span class="upcoming">&nbsp;</span><?php _e('Upcoming birthdays', 'wp-birthday-users'); ?> - <small>( <?php echo count($optionarray_def['come'])." / ".$usersbirthday; ?> )</small></h3>
-        <?php echo $upcoming; ?>
+        <div class="content">
+          <table>
+            <?php echo $upcoming; ?></table>
+          </table>
+        </div>
       </div>
     </div>
     <div class="metabox-holder">
       <div class="postbox">
         <div class="handlediv" title="Klik om te wisselen"><br /></div><h3><span class="upcoming">&nbsp;</span><?php _e('Passed birthdays', 'wp-birthday-users'); ?> - <small>( <?php echo count($optionarray_def['past'])." / ".$usersbirthday; ?> )</small></h3>
-        <?php echo $passed; ?>
+        <div class="content">
+          <table>
+            <?php echo $passed; ?></table>
+          </table>
+        </div>
       </div>
     </div>
+    <script>
+      var $j = jQuery.noConflict();
+      $j(".handlediv").click(function() {
+          $j(this).parent().children(".content").toggle();
+      });
+    </script>
 <?php
 
 }

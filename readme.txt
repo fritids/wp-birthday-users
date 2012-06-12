@@ -4,7 +4,7 @@ Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
 Tested up to: 3.3.2
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,8 +13,9 @@ Let users fill in there birthday.
 == Description ==
 
 This plugin will add additional fields in the profil of a user, they can fill in there birthday, choose if they want to share it and if they want to show there birthday.
+When saved, the system will generate a ICAL-file that can included in many calendar programs/plugins.
 
-As admin you can see a overview of all birthdays, with upcoming, passed and with some info about, how many registered birthdays, the oldest, youngest, average age.
+As admin you can see an overview of all birthdays, with upcoming, passed and with some info about, how many registered birthdays, the oldest, youngest, average age.
 
 == Installation ==
 
@@ -40,6 +41,10 @@ At the moment I have no idea, it's created on the last version (3.3.2) but I thi
 This plugin should work wtih PHP 4.4 through last versions of php is always the best.
 
 == Changelog ==
+
+= 0.1.2 =
+* Fixed style error with Chrome
+* Fixed the function to collapse upcoming/passed birthday info
 
 = 0.1.1 =
 * Add translation Dutch
