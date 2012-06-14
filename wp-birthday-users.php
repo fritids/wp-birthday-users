@@ -144,7 +144,7 @@ function birthdayusers_init() {
 ?>
 	<div class="wrap">
 		<div id="icon-wp-birthday-users" class="icon32"><br /></div>
-		<h2><?php _e('Birthdays', 'wp-birthday-users'); echo (current_user_can('activate_plugins')?"<span class=\"rebuild\"><a href=\"".$_SERVER['QUERY_STRING']."&amp;rebuild\">".__('rebuild birthdays', 'wp-birthday-users')."</a></span>":"") ?></h2>
+		<h2><?php _e('Birthdays', 'wp-birthday-users'); echo (current_user_can('activate_plugins')?"<span class=\"rebuild\"><a href=\"?".$_SERVER['QUERY_STRING']."&amp;rebuild\">".__('rebuild birthdays', 'wp-birthday-users')."</a></span>":"") ?></h2>
     <ul>
       <li><em><?php printf(__('%1$s</em> of the %2$s registered user filled in there birthday.', 'wp-birthday-users'), $usersbirthday, count($blogusers)); ?></li>
       <li><strong><?php _e('Average age', 'wp-birthday-users'); ?>:</strong> <em><?php echo ($usersbirthday != 0 ?round($averageage/$usersbirthday, 1):"") ?></em></li>
