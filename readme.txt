@@ -19,6 +19,7 @@ As admin you can see an overview of all birthdays, with upcoming, passed and wit
 
 > #### Upgrade from 0.1.x to 0.1.3
 > If you upgrade to 0.1.3 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+> !!!For some reason there is 2 breakspaces in the wp-birthday-users.php at the end. Delete these to let the plugin work. (I try to fix it later)!!!
 
 == Installation ==
 
