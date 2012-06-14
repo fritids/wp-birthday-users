@@ -1,4 +1,4 @@
-opyright (C) 2012 
+# Copyright (C) 2012 
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
@@ -16,59 +16,67 @@ msgstr ""
 msgid "Users Birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:72
+#: wp-birthday-users.php:103
 msgid "y"
 msgstr ""
 
-#: wp-birthday-users.php:94
+#: wp-birthday-users.php:109
+msgid "Birthdays rebuild."
+msgstr ""
+
+#: wp-birthday-users.php:115
 msgid "Birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:96
+#: wp-birthday-users.php:115
+msgid "rebuild birthdays"
+msgstr ""
+
+#: wp-birthday-users.php:117
 msgid "%1$s</em> of the %2$s registered user filled in there birthday."
 msgstr ""
 
-#: wp-birthday-users.php:97
+#: wp-birthday-users.php:118
 msgid "Average age"
 msgstr ""
 
-#: wp-birthday-users.php:98
+#: wp-birthday-users.php:119
 msgid "Oldest user"
 msgstr ""
 
-#: wp-birthday-users.php:99
+#: wp-birthday-users.php:120
 msgid "Youngest user"
 msgstr ""
 
-#: wp-birthday-users.php:100
+#: wp-birthday-users.php:121
 msgid "Birthdays ICAL"
 msgstr ""
 
-#: wp-birthday-users.php:104
+#: wp-birthday-users.php:125
 msgid "Upcoming birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:110
+#: wp-birthday-users.php:135
 msgid "Passed birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:173
+#: wp-birthday-users.php:198
 msgid "Date of birth"
 msgstr ""
 
-#: wp-birthday-users.php:177
+#: wp-birthday-users.php:202
 msgid "Birthday"
 msgstr ""
 
-#: wp-birthday-users.php:184
+#: wp-birthday-users.php:209
 msgid "Share anniversary info"
 msgstr ""
 
-#: wp-birthday-users.php:188
+#: wp-birthday-users.php:212
 msgid "Share age info"
 msgstr ""
 
-#: wp-birthday-users.php:190
+#: wp-birthday-users.php:215
 msgid "Show your age: %d y, and this only if you share your anniversary info."
 msgstr ""
 

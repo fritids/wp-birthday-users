@@ -3,8 +3,8 @@ Contributors: omarke85
 Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
-Tested up to: 3.3.2
-Stable tag: 0.1.2
+Tested up to: 3.4
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,9 @@ When saved, the system will generate a ICAL-file that can included in many calen
 
 As admin you can see an overview of all birthdays, with upcoming, passed and with some info about, how many registered birthdays, the oldest, youngest, average age.
 
+> #### Upgrade from 0.1.x to 0.1.3
+> If you upgrade to 0.1.3 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+
 == Installation ==
 
 1. Download <a href="http://wordpress.org/extend/plugins/wp-birthday-users/">wp-birthday-users</a> to a directory on your web server. 
@@ -25,6 +28,9 @@ As admin you can see an overview of all birthdays, with upcoming, passed and wit
 4. That's it.
 5. Go to your profil and fill in your birthday. Save it.
 6. This will create a birthday.ics-file in your upload-directory of wordpress.
+
+If you upgrade:
+Run rebuild-script found on the birthdays overview page.
 
 == Frequently Asked Questions ==
 
@@ -42,6 +48,12 @@ This plugin should work wtih PHP 4.4 through last versions of php is always the 
 
 == Changelog ==
 
+= 0.1.3 =
+* Fixed bugfix: when no filled in birthdays
+* Fixed empty names in overview
+* Add rebuild-function
+* Changed names of stored-files
+
 = 0.1.2 =
 * Fixed style error with Chrome
 * Fixed the function to collapse upcoming/passed birthday info
@@ -52,4 +64,10 @@ This plugin should work wtih PHP 4.4 through last versions of php is always the 
 
 = 0.1 =
 * Initial release.
+
+== Upgrade Notice ==
+
+= 0.1.3 =
+This version fixes some errors in the system.  Upgrade immediately.
+After upgrading, run the rebuild script (you can find this on the birthdays overview-page)
 
