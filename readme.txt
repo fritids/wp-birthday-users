@@ -17,8 +17,9 @@ When saved, the system will generate a ICAL-file that can included in many calen
 
 As admin you can see an overview of all birthdays, with upcoming, passed and with some info about, how many registered birthdays, the oldest, youngest, average age.
 
-> #### Upgrade from 0.1.x to 0.1.3
-> If you upgrade to 0.1.3 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+> #### Upgrade from 0.1.x to 0.1.4
+> If you upgrade to 0.1.4 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+> ### Caution: in version 0.1.3
 > !!!For some reason there is 2 breakspaces in the wp-birthday-users.php at the end. Delete these to let the plugin work. (I try to fix it later)!!!
 
 == Installation ==
@@ -49,6 +50,10 @@ This plugin should work wtih PHP 4.4 through last versions of php is always the 
 
 == Changelog ==
 
+= 0.1.4 =
+* Fixed error with breakspace at the end of the php-file
+* Add extra functionality
+
 = 0.1.3 =
 * Fixed bugfix: when no filled in birthdays
 * Fixed empty names in overview
@@ -67,6 +72,9 @@ This plugin should work wtih PHP 4.4 through last versions of php is always the 
 * Initial release.
 
 == Upgrade Notice ==
+
+= 0.1.4 =
+Should fix the error in version 0.1.3 Upgrade immediately.
 
 = 0.1.3 =
 This version fixes some errors in the system.  Upgrade immediately.
