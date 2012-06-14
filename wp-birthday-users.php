@@ -3,7 +3,7 @@
 Plugin Name: WP Birthday Users
 Plugin URI: http://omar.reygaert.eu/wp/plugins/wp-birthday-users
 Plugin that adds birthday posts for the users.
-Version: 0.1.3
+Version: 0.1.4
 Domain Path: /lang
 Author: Omar Reygaert
 Author URI: http://about.me/omar.reygaert
@@ -50,21 +50,28 @@ function birthdayusers_init() {
   $youngest_name = $oldest_name = "";
   $upload = wp_upload_dir();
   foreach ($blogusers as $user) {
-    $birthday = get_user_meta($user->ID, 'birthday_date', true);
+    $birthday      = get_user_meta($user->ID, 'birthday_date', true);
+    $nickname      = get_user_meta($user->ID, 'nickname', true);
+    $birthdayshare = get_user_meta($user->ID, 'birthday_share', true);
+    $birthdayage   = get_user_meta($user->ID, 'birthday_age', true);
+    $changes       = get_user_meta($user->ID, 'birthday_change', true);
+    $first_name    = get_user_meta($user->ID, 'first_name', true);
+    $last_name     = get_user_meta($user->ID, 'last_name', true);
     if ($birthday != "") {
       $date = preg_split("/\//", $birthday);
       $birthdate = ($date[2]<10?"0".$date[2]:$date[2])."-".($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]);
       if ($oldest == NULL) {
         $oldest = $birthdate;
+        $oldest_name = ($nickname!= ""?$nickname:$user->user_login);
       }
-      if (isset($_REQUEST["rebuild"]) && get_user_meta($user->ID, 'birthday_share', true) == 1) {
-        write2file(birthday2ical($$birthday, $user->ID, get_user_meta($user->ID, 'birthday_age', true), get_user_meta($user->ID, 'birthday_change', true)), plugin_dir_path(__FILE__)."icals/b2i_".$user->user_login);
+      if (isset($_REQUEST["rebuild"]) && $birthdayshare == 1) {
+        write2file(birthday2ical($$birthday, $user->ID, $birthdayage, $changes), plugin_dir_path(__FILE__)."icals/b2i_".$user->user_login);
       }
       $optionarray_def[(($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]) >= date('m-d')?"come":"past")][$user->ID] = array(
-        'birthday_user'  => (get_user_meta($user->ID, 'first_name', true)!= ""?(get_user_meta($user->ID, 'first_name', true)." ".get_user_meta($user->ID, 'last_name', true)):$user->user_login),
-        'birthday_date'  => $birthday,
-        'birthday_share' => get_user_meta($user->ID, 'birthday_share', true),
-        'birthday_age'   => get_user_meta($user->ID, 'birthday_age', true),
+        'birthday_user'  => ($first_name != ""?($first_name." ".$last_name):$user->user_login),
+        'birthday_date'  => (($birthdayage==1 || current_user_can('activate_plugins'))?$birthday:$date[0]."/".$date[2]."/****"),
+        'birthday_share' => $birthdayshare,
+        'birthday_age'   => $birthdayage,
         'birthday_sort'  => ($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]),
         'birthday_newer' => ($date[1]<10?"0".$date[1]:$date[1])
       );
@@ -72,11 +79,11 @@ function birthdayusers_init() {
         
       if ($birthdate < $oldest) {
         $oldest = $birthdate;
-        $oldest_name = (get_user_meta($user->ID, 'nickname', true)!= ""?get_user_meta($user->ID, 'nickname', true):$user->user_login);
+        $oldest_name = ($nickname!= ""?$nickname:$user->user_login);
       }
       if ($birthdate > $youngest) {
         $youngest = $birthdate;
-        $youngest_name = (get_user_meta($user->ID, 'nickname', true)!= ""?get_user_meta($user->ID, 'nickname', true):$user->user_login);
+        $youngest_name = ($nickname!= ""?$nickname:$user->user_login);
       }
     }
   }
@@ -86,10 +93,22 @@ function birthdayusers_init() {
     $upcoming = '';
     foreach ($optionarray_def['come'] as $user_id => $user) {
       if ($user['birthday_newer'] == $optionarray_def['come'][$key-1]['birthday_newer']) {
-        $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
+        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
+          $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+            $upcoming .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
+          }
+          $upcoming .= "</tr>\n";
+        }
       } else {
-        $upcoming .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>";
-        $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
+        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
+          $upcoming .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
+          $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+            $upcoming .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
+          }
+          $upcoming .= "</tr>\n";
+        }
       }
     }
   }
@@ -98,10 +117,22 @@ function birthdayusers_init() {
     $passed = '';
     foreach ($optionarray_def['past'] as $key => $user) {
       if ($user['birthday_newer'] == $optionarray_def['past'][$key-1]['birthday_newer']) {
-        $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
+        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
+          $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+            $passed .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
+          }
+          $passed .= "</tr>\n";
+        }
       } else {
-        $passed .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>";
-        $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td><td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td></tr>";
+        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
+          $passed .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
+          $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+            $passed .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
+          }
+          $passed .= "</tr>\n";
+        }
       }
     }
   }
@@ -113,7 +144,7 @@ function birthdayusers_init() {
 ?>
 	<div class="wrap">
 		<div id="icon-wp-birthday-users" class="icon32"><br /></div>
-		<h2><?php _e('Birthdays', 'wp-birthday-users'); ?><span class="rebuild"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&amp;rebuild"><?php _e('rebuild birthdays', 'wp-birthday-users'); ?></a></span></h2>
+		<h2><?php _e('Birthdays', 'wp-birthday-users'); echo (current_user_can('activate_plugins')?"<span class=\"rebuild\"><a href=\"".$_SERVER['QUERY_STRING']."&amp;rebuild\">".__('rebuild birthdays', 'wp-birthday-users')."</a></span>":"") ?></h2>
     <ul>
       <li><em><?php printf(__('%1$s</em> of the %2$s registered user filled in there birthday.', 'wp-birthday-users'), $usersbirthday, count($blogusers)); ?></li>
       <li><strong><?php _e('Average age', 'wp-birthday-users'); ?>:</strong> <em><?php echo ($usersbirthday != 0 ?round($averageage/$usersbirthday, 1):"") ?></em></li>
