@@ -4,7 +4,7 @@ Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
 Tested up to: 3.4
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
