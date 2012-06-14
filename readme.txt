@@ -48,6 +48,15 @@ At the moment I have no idea, it's created on the last version (3.3.2) but I thi
 
 This plugin should work wtih PHP 4.4 through last versions of php is always the best.
 
+= I upgrade from a version before 0.1.3 and I see birthdays 2 times in the ical? =
+
+Since 0.1.3 there is a change in the way the plugin saves the ical-file. If you encounter problems of duplicate events, run the "rebuild birthdays" on the overview page on "Birthday users". This will cleanupthe old usage and recreate it in the new way.
+
+= I have version 0.1.3 but it gives an error when I activate the plugin, what to do? =
+
+For some reason there went 2 breakspaces in the core plugin file. You can edit the file wp-birthday-users.php at the end by remove the breakspaces. Or you could upgrade to the last version.
+I'm sorry for this.
+
 == Changelog ==
 
 = 0.1.4 =
