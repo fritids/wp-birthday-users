@@ -36,6 +36,7 @@ add_action( 'edit_user_profile_update', 'save_birthday_users_custom_fields' );
 
 ### Function: Birthday-Users init
 function birthdayusers_init() {
+  $text = "";
   wp_enqueue_style('wp-birthday-users-admin', plugins_url('wp-birthday-users/birthday-users-admin-css.css'), false, '0.1', 'all');
   if (isset($_REQUEST["rebuild"])) {
     foreach(scandir(plugin_dir_path(__FILE__)."icals") as $item){
@@ -230,4 +231,3 @@ function list_birthdays() {
 }
 
 ?>
-
