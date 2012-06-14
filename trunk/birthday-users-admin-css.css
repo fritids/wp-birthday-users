@@ -1,0 +1,47 @@
+/*
+ * WP Birthday Users style sheet for admin
+ * */
+
+#icon-wp-birthday-users {
+	background: transparent url(images/birthday-admin-icon.png) no-repeat;
+}
+.rebuild {
+  padding-left: 20px;
+  font-size: small;
+}
+h4 {
+  margin: 5px;
+  padding: 2px;
+}
+.upcoming {
+  background: transparent url(images/birthday-.png) 0 0px no-repeat;
+  display:inline-block;
+  padding: 0 0 2px 20px;
+}
+.passed {
+  background: transparent url(images/birthday-passed.png) 0 0px no-repeat;
+  display:inline-block;
+  padding: 0 0 2px 20px;
+}
+table {
+  padding: 5px;
+}
+th {
+  text-align: left;
+}
+td{
+  margin: 5px;
+  padding: 2px;
+  clear: all;
+}
+.date {
+  padding: 0 5px 0 0;
+  width: 70px;
+  float: left;
+  text-align: right;
+}
+.username {
+  min-width: 175px;
+  float: left;
+}
+
