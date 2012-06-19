@@ -62,7 +62,7 @@ I'm sorry for this.
 = 0.1.5 =
 * Fixed bug
 * Added translation in the ical-file
-* Added option to choose with name will be used
+* Added option to choose which name will be used
 * Added option to choose who the birthday page can see
 * Added translation German
 
