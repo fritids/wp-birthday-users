@@ -12,71 +12,122 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: wp-birthday-users.php:25
+#: wp-birthday-users.php:29
 msgid "Users Birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:103
+#: wp-birthday-users.php:31
+msgid "Birthdays Options"
+msgstr ""
+
+#: wp-birthday-users.php:138
 msgid "y"
 msgstr ""
 
-#: wp-birthday-users.php:109
+#: wp-birthday-users.php:147
 msgid "Birthdays rebuild."
 msgstr ""
 
-#: wp-birthday-users.php:115
+#: wp-birthday-users.php:153
 msgid "Birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:115
+#: wp-birthday-users.php:153
 msgid "rebuild birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:117
+#: wp-birthday-users.php:155
 msgid "%1$s</em> of the %2$s registered user filled in there birthday."
 msgstr ""
 
-#: wp-birthday-users.php:118
+#: wp-birthday-users.php:156
 msgid "Average age"
 msgstr ""
 
-#: wp-birthday-users.php:119
+#: wp-birthday-users.php:157
 msgid "Oldest user"
 msgstr ""
 
-#: wp-birthday-users.php:120
+#: wp-birthday-users.php:158
 msgid "Youngest user"
 msgstr ""
 
-#: wp-birthday-users.php:121
+#: wp-birthday-users.php:159
 msgid "Birthdays ICAL"
 msgstr ""
 
-#: wp-birthday-users.php:125
+#: wp-birthday-users.php:163
 msgid "Upcoming birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:135
+#: wp-birthday-users.php:173
 msgid "Passed birthdays"
 msgstr ""
 
-#: wp-birthday-users.php:198
+#: wp-birthday-users.php:249
 msgid "Date of birth"
 msgstr ""
 
-#: wp-birthday-users.php:202
+#: wp-birthday-users.php:253
 msgid "Birthday"
 msgstr ""
 
-#: wp-birthday-users.php:209
+#: wp-birthday-users.php:260
 msgid "Share anniversary info"
 msgstr ""
 
-#: wp-birthday-users.php:212
+#: wp-birthday-users.php:264
 msgid "Share age info"
 msgstr ""
 
-#: wp-birthday-users.php:215
+#: wp-birthday-users.php:265
 msgid "Show your age: %d y, and this only if you share your anniversary info."
 msgstr ""
 
+#: wp-birthday-users.php:297
+msgid "Options Updated"
+msgstr ""
+
+#: wp-birthday-users.php:300
+msgid "No Options Updated/Changed"
+msgstr ""
+
+#: wp-birthday-users.php:310
+msgid "Birthday Users Options"
+msgstr ""
+
+#: wp-birthday-users.php:311
+msgid "Default Settings"
+msgstr ""
+
+#: wp-birthday-users.php:314
+msgid "Display name in ICAL:"
+msgstr ""
+
+#: wp-birthday-users.php:324
+msgid "Choose which name will be used for the description in the ical-file"
+msgstr ""
+
+#: wp-birthday-users.php:328
+msgid "Select the group that can see the birthday page overview:"
+msgstr ""
+
+#: wp-birthday-users.php:331
+msgid "This will show the link: "
+msgstr ""
+
+#: wp-birthday-users.php:332
+msgid "Ages will only be visible if the user choosed to share it or if you are administrator"
+msgstr ""
+
+#: functions.php:53
+msgid "Birthday of "
+msgstr ""
+
+#: functions.php:53
+msgid " born on "
+msgstr ""
+
+#: functions.php:60
+msgid "Birthday "
+msgstr ""

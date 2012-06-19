@@ -4,7 +4,7 @@ Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
 Tested up to: 3.4
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,14 +59,21 @@ I'm sorry for this.
 
 == Changelog ==
 
+= 0.1.5 =
+* Fixed bug
+* Added translation in the ical-file
+* Added option to choose with name will be used
+* Added option to choose who the birthday page can see
+* Added translation German
+
 = 0.1.4 =
 * Fixed error with breakspace at the end of the php-file
-* Add extra functionality
+* Added extra functionality
 
 = 0.1.3 =
 * Fixed bugfix: when no filled in birthdays
 * Fixed empty names in overview
-* Add rebuild-function
+* Added rebuild-function
 * Changed names of stored-files
 
 = 0.1.2 =
@@ -74,13 +81,16 @@ I'm sorry for this.
 * Fixed the function to collapse upcoming/passed birthday info
 
 = 0.1.1 =
-* Add translation Dutch
-* Add translation French
+* Added translation Dutch
+* Added translation French
 
 = 0.1 =
 * Initial release.
 
 == Upgrade Notice ==
+
+= 0.1.5 =
+Adds additional functionality. Upgrade recommended
 
 = 0.1.4 =
 Should fix the error in version 0.1.3 Upgrade immediately.
