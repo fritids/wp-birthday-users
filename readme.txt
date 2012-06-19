@@ -4,7 +4,7 @@ Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
 Tested up to: 3.4
-Stable tag: 0.1.3
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,9 @@ When saved, the system will generate a ICAL-file that can included in many calen
 
 As admin you can see an overview of all birthdays, with upcoming, passed and with some info about, how many registered birthdays, the oldest, youngest, average age.
 
-> #### Upgrade from 0.1.x to 0.1.3
-> If you upgrade to 0.1.3 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+> #### Upgrade from 0.1.x to 0.1.4
+> If you upgrade to 0.1.4 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+> ### Caution: in version 0.1.3
 > !!!For some reason there is 2 breakspaces in the wp-birthday-users.php at the end. Delete these to let the plugin work. (I try to fix it later)!!!
 
 == Installation ==
@@ -47,12 +48,32 @@ At the moment I have no idea, it's created on the last version (3.3.2) but I thi
 
 This plugin should work wtih PHP 4.4 through last versions of php is always the best.
 
+= I upgrade from a version before 0.1.3 and I see birthdays 2 times in the ical? =
+
+Since 0.1.3 there is a change in the way the plugin saves the ical-file. If you encounter problems of duplicate events, run the "rebuild birthdays" on the overview page on "Birthday users". This will cleanupthe old usage and recreate it in the new way.
+
+= I have version 0.1.3 but it gives an error when I activate the plugin, what to do? =
+
+For some reason there went 2 breakspaces in the core plugin file. You can edit the file wp-birthday-users.php at the end by remove the breakspaces. Or you could upgrade to the last version.
+I'm sorry for this.
+
 == Changelog ==
+
+= 0.1.5 =
+* Fixed bug
+* Added translation in the ical-file
+* Added option to choose with name will be used
+* Added option to choose who the birthday page can see
+* Added translation German
+
+= 0.1.4 =
+* Fixed error with breakspace at the end of the php-file
+* Added extra functionality
 
 = 0.1.3 =
 * Fixed bugfix: when no filled in birthdays
 * Fixed empty names in overview
-* Add rebuild-function
+* Added rebuild-function
 * Changed names of stored-files
 
 = 0.1.2 =
@@ -60,13 +81,19 @@ This plugin should work wtih PHP 4.4 through last versions of php is always the 
 * Fixed the function to collapse upcoming/passed birthday info
 
 = 0.1.1 =
-* Add translation Dutch
-* Add translation French
+* Added translation Dutch
+* Added translation French
 
 = 0.1 =
 * Initial release.
 
 == Upgrade Notice ==
+
+= 0.1.5 =
+Adds additional functionality. Upgrade recommended
+
+= 0.1.4 =
+Should fix the error in version 0.1.3 Upgrade immediately.
 
 = 0.1.3 =
 This version fixes some errors in the system.  Upgrade immediately.

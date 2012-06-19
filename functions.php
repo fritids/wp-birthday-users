@@ -33,8 +33,35 @@ function deletefile($file) {
   unlink($file);
 }
 
+### Function: Get Permision number of a group
+function bu_permLevel($permlevel='administrator') {
+  $number = 8;
+  if (isset($permlevel)){
+    $role = get_role( $permlevel );
+    for ($i=0; $i < 9; $i++) {
+      if (array_key_exists("level_$i", $role->capabilities)) {
+        $number = $i;
+      }
+    }
+  }
+  return $number;
+}
+
+### Function: set a value based on saved option
+function getUserMetaValue($display='first_name,last_name', $user_id) {
+  $display = ($display == NULL?'first_name,last_name':$display);
+  $user = get_user_to_edit($user_id);
+  $parts = explode(",", $display);
+  if (count($parts) < 2) {
+    $value = $user->$parts[0];
+  } else {
+    $value = $user->$parts[0]." ".$user->$parts[1];
+  }
+  return $value;
+}
+
 ### Function: create a ical-content for one user
-function birthday2ical($date, $user_id, $birthday_age, $sequence) {
+function birthday2ical($date, $user_id, $birthday_age, $sequence, $display) {
 //DTSTART;TZID=".get_option('timezone_string').":".$date[2].($date[1]<10?"0".$date[1]:$date[1]).($date[0]<10?"0".$date[0]:$date[0])."T090000Z
 //DTEND;TZID=".get_option('timezone_string').":".$date[2].($date[1]<10?"0".$date[1]:$date[1]).($date[0]<10?"0".$date[0]:$date[0])."T090000Z
 //CLASS:PRIVATE
@@ -50,14 +77,14 @@ ORGANIZER;CN=".get_user_meta($user_id, 'first_name', true)." ".get_user_meta($us
 UID:uuid:".md5($user_id)."
 CLASS:PUBLIC
 CREATED:20120528T154008Z
-DESCRIPTION:Verjaardag van ".get_user_meta($user_id, 'first_name', true)." ".get_user_meta($user_id, 'last_name', true).($birthday_age==1?" geboren op ".$date[2]:"")."
+DESCRIPTION:".__('Birthday of ', 'wp-birthday-users').getUserMetaValue($display, $user_id).($birthday_age==1?__(' born on ', 'wp-birthday-users').$date[2]:"")."
 LAST-MODIFIED:".date('Ymd\THis\Z')."
 X-MICROSOFT-CDO-BUSYSTATUS:FREE
 X-FUNAMBOL-ALLDAY:1
 LOCATION:Gent
 SEQUENCE:".$sequence."
 STATUS:CONFIRMED
-SUMMARY:Verjaardag ".get_user_meta($user_id, 'nickname', true)."
+SUMMARY:".__('Birthday ', 'wp-birthday-users').get_user_meta($user_id, 'nickname', true)."
 TRANSP:OPAQUE
 END:VEVENT";
  return $content;

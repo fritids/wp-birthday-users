@@ -5,6 +5,9 @@
 #icon-wp-birthday-users {
 	background: transparent url(images/birthday-admin-icon.png) no-repeat;
 }
+.input {
+  position: relative;
+}
 .rebuild {
   padding-left: 20px;
   font-size: small;
