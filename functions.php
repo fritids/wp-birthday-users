@@ -57,7 +57,74 @@ function getUserMetaValue($display='first_name,last_name', $user_id) {
   } else {
     $value = $user->$parts[0]." ".$user->$parts[1];
   }
+  if ($value == "" || $value == " ") {
+    $value = $user->data->display_name;
+  }
   return $value;
+}
+
+function birthdayslist($rebuild=false) {
+  $optionarray_def = array();
+  $optionarray_def = get_option('birthdayusers_options');
+  if (isset($rebuild)) {
+    foreach(scandir(plugin_dir_path(__FILE__)."icals") as $item){
+      if(is_file(plugin_dir_path(__FILE__)."icals/$item")){
+        deletefile(plugin_dir_path(__FILE__)."icals/$item");
+      } 
+    }
+  }
+  $blogusers = get_users('orderby=ID');
+  $usersarray['info']['youngest'] = $usersarray['info']['oldest'] = "";
+  $youngest = $oldest = NULL;
+  $upload = wp_upload_dir();
+  $usersarray['info']['basedir'] = $upload['basedir']."/birthday.ics";
+  $usersarray['info']['baseurl'] = $upload['baseurl']."/birthday.ics";
+  foreach ($blogusers as $user) {
+    $birthday      = get_user_meta($user->ID, 'birthday_date', true);
+    $nickname      = get_user_meta($user->ID, 'nickname', true);
+    $birthdayshare = get_user_meta($user->ID, 'birthday_share', true);
+    $birthdayage   = get_user_meta($user->ID, 'birthday_age', true);
+    $changes       = get_user_meta($user->ID, 'birthday_change', true);
+    $first_name    = get_user_meta($user->ID, 'first_name', true);
+    $last_name     = get_user_meta($user->ID, 'last_name', true);
+    if ($birthday != "") {
+      if ($birthdayshare == 1 || current_user_can('activate_plugins')) {
+        $date = preg_split("/\//", $birthday);
+        $birthdate = ($date[2]<10?"0".$date[2]:$date[2])."-".($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]);
+        if ($oldest == NULL) {
+          $oldest = $birthdate;
+          $usersarray['info']['oldest'] = ($nickname!= ""?$nickname:$user->user_login);
+        }
+        if (isset($rebuild) && $birthdayshare == 1) {
+          write2file(birthday2ical($birthday, $user->ID, $birthdayage, $changes, $optionarray_def['bu_display']), plugin_dir_path(__FILE__)."icals/b2i_".$user->user_login);
+        }
+        $usersarray[(($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]) >= date('m-d')?"come":"past")][$user->ID] = array(
+          'birthday_user'  => getUserMetaValue($optionarray_def['bu_display'], $user->ID),
+          'birthday_date'  => (($birthdayage==1 || current_user_can('activate_plugins'))?$birthday:"<span class=\"protected\">".$date[0]."/".$date[1]."/</span>"),
+          'birthday_share' => $birthdayshare,
+          'birthday_age'   => $birthdayage,
+          'birthday_sort'  => ($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]),
+          'birthday_newer' => ($date[1]<10?"0".$date[1]:$date[1])
+        );
+        $usersarray['info']['average_age'] += age($birthday);
+          
+        if ($birthdate < $oldest) {
+          $oldest = $birthdate;
+          $usersarray['info']['oldest'] = ($nickname!= ""?$nickname:$user->user_login);
+        }
+        if ($birthdate > $youngest) {
+          $youngest = $birthdate;
+          $usersarray['info']['youngest'] = ($nickname!= ""?$nickname:$user->user_login);
+        }
+      }
+    }
+  }
+  $usersarray['info']['total_users'] = count($blogusers);
+  if (isset($rebuild)) {
+    write2file(merge2ical(plugin_dir_path(__FILE__)."icals"), $upload['basedir']."/birthday.ics");
+    $usersarray['info']['text'] .= __('Birthdays rebuild.', 'wp-birthday-users');
+  }
+  return $usersarray;
 }
 
 ### Function: create a ical-content for one user
@@ -73,7 +140,7 @@ DTSTART;VALUE=DATE:".($date[2]>="1970"?$date[2]:"1970").($date[1]<10?"0".$date[1
 DTEND;VALUE=DATE:".($date[2]>="1970"?$date[2]:"1970").($date[1]<10?"0".$date[1]:$date[1]).($date[0]<10?"0".$date[0]:$date[0])."
 RRULE:FREQ=YEARLY;INTERVAL=1;BYMONTHDAY=".($date[0]<10?"0".$date[0]:$date[0]).";BYMONTH=".($date[1]<10?"0".$date[1]:$date[1])."
 DTSTAMP:".date('Ymd\THis\Z')."
-ORGANIZER;CN=".get_user_meta($user_id, 'first_name', true)." ".get_user_meta($user_id, 'last_name', true).":MAILTO:".$user_info->user_email."
+ORGANIZER;CN=".getUserMetaValue($display, $user_id).":MAILTO:".$user_info->user_email."
 UID:uuid:".md5($user_id)."
 CLASS:PUBLIC
 CREATED:20120528T154008Z

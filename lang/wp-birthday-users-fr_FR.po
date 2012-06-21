@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: wp birthday users 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
 "POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
-"PO-Revision-Date: 2012-06-19 09:06+0100\n"
+"PO-Revision-Date: 2012-06-21 15:42+0100\n"
 "Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -102,6 +102,14 @@ msgstr "Birthday Users Options"
 #: wp-birthday-users.php:311
 msgid "Default Settings"
 msgstr "Paramètres Généraux"
+
+#: wp-birthday-users.php:323
+msgid "Use the users display name"
+msgstr "Utilisez le nom d'utilisateur"
+
+#: wp-birthday-users.php:327
+msgid "The system will use the Display name selected by the user."
+msgstr "Le système utilisera le nom d'affichage choisi par l'utilisateur."
 
 #: wp-birthday-users.php:314
 msgid "Display name in ICAL:"

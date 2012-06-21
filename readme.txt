@@ -4,7 +4,7 @@ Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
 Tested up to: 3.4
-Stable tag: 0.1.5
+Stable tag: 0.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,8 +19,9 @@ As admin you can see an overview of all birthdays, with upcoming, passed and wit
 
 > #### Upgrade from 0.1.x to 0.1.4
 > If you upgrade to 0.1.4 please run the "rebuild birthdys"-script. This because of changes in storing files on the system.
+> When using 0.1.6 and you changes an options the rebuild will be done for you.
 > ### Caution: in version 0.1.3
-> !!!For some reason there is 2 breakspaces in the wp-birthday-users.php at the end. Delete these to let the plugin work. (I try to fix it later)!!!
+> For some reason there is 2 breakspaces in the wp-birthday-users.php at the end. Delete these to let the plugin work. (I try to fix it later)
 
 == Installation ==
 
@@ -59,6 +60,11 @@ I'm sorry for this.
 
 == Changelog ==
 
+= 0.1.6 =
+* Fixed empty names in ical-file
+* Fixed birthday view (wrong count)
+* Added option to use the user display name or self-defined
+
 = 0.1.5 =
 * Fixed bug
 * Added translation in the ical-file
@@ -88,6 +94,9 @@ I'm sorry for this.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 0.1.6 =
+Fix for empty names + additional functionality. Upgrade recommended
 
 = 0.1.5 =
 Adds additional functionality. Upgrade recommended

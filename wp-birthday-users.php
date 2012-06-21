@@ -3,7 +3,7 @@
 Plugin Name: WP Birthday Users
 Plugin URI: http://omar.reygaert.eu/wp/plugins/wp-birthday-users
 Plugin that adds birthday posts for the users.
-Version: 0.1.5
+Version: 0.1.6
 Domain Path: /lang
 Author: Omar Reygaert
 Author URI: http://about.me/omar.reygaert
@@ -39,82 +39,29 @@ add_action( 'edit_user_profile_update', 'save_birthday_users_custom_fields' );
 
 ### Function: Birthday-Users init
 function birthdayusers_init() {
-  $optionarray_def = array();
-  $optionarray_def = get_option('birthdayusers_options');
-  $pluginname = explode("/", plugin_basename(__FILE__));
   $text = "";
+  $pluginname = explode("/", plugin_basename(__FILE__));
   wp_enqueue_style('wp-birthday-users-admin', plugins_url('wp-birthday-users/birthday-users-admin-css.css'), false, '0.1', 'all');
-  if (isset($_REQUEST["rebuild"])) {
-    foreach(scandir(plugin_dir_path(__FILE__)."icals") as $item){
-      if(is_file(plugin_dir_path(__FILE__)."icals/$item")){
-        deletefile(plugin_dir_path(__FILE__)."icals/$item");
-      } 
-    }
-  }
-  $blogusers = get_users('orderby=ID');
-  $youngest = $oldest = NULL;
-  $youngest_name = $oldest_name = "";
-  $upload = wp_upload_dir();
-  foreach ($blogusers as $user) {
-    $birthday      = get_user_meta($user->ID, 'birthday_date', true);
-    $nickname      = get_user_meta($user->ID, 'nickname', true);
-    $birthdayshare = get_user_meta($user->ID, 'birthday_share', true);
-    $birthdayage   = get_user_meta($user->ID, 'birthday_age', true);
-    $changes       = get_user_meta($user->ID, 'birthday_change', true);
-    $first_name    = get_user_meta($user->ID, 'first_name', true);
-    $last_name     = get_user_meta($user->ID, 'last_name', true);
-    if ($birthday != "") {
-      $date = preg_split("/\//", $birthday);
-      $birthdate = ($date[2]<10?"0".$date[2]:$date[2])."-".($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]);
-      if ($oldest == NULL) {
-        $oldest = $birthdate;
-        $oldest_name = ($nickname!= ""?$nickname:$user->user_login);
-      }
-      if (isset($_REQUEST["rebuild"]) && $birthdayshare == 1) {
-        write2file(birthday2ical($birthday, $user->ID, $birthdayage, $changes, $optionarray_def['bu_display']), plugin_dir_path(__FILE__)."icals/b2i_".$user->user_login);
-      }
-      $usersarray[(($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]) >= date('m-d')?"come":"past")][$user->ID] = array(
-        'birthday_user'  => ($first_name != ""?($first_name." ".$last_name):$user->user_login),
-        'birthday_date'  => (($birthdayage==1 || current_user_can('activate_plugins'))?$birthday:$date[0]."/".$date[2]."/****"),
-        'birthday_share' => $birthdayshare,
-        'birthday_age'   => $birthdayage,
-        'birthday_sort'  => ($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]),
-        'birthday_newer' => ($date[1]<10?"0".$date[1]:$date[1])
-      );
-      $averageage += age($birthday);
-        
-      if ($birthdate < $oldest) {
-        $oldest = $birthdate;
-        $oldest_name = ($nickname!= ""?$nickname:$user->user_login);
-      }
-      if ($birthdate > $youngest) {
-        $youngest = $birthdate;
-        $youngest_name = ($nickname!= ""?$nickname:$user->user_login);
-      }
-    }
-  }
+  // Create the birthdaylist.
+  $usersarray = birthdayslist($_REQUEST["rebuild"]);
   $usersbirthday = count($usersarray['come'])+count($usersarray['past']);
   if ($usersarray['come'] != NULL) {
     uasort($usersarray['come'], 'date_sort');
     $upcoming = '';
     foreach ($usersarray['come'] as $user_id => $user) {
       if ($user['birthday_newer'] == $usersarray['come'][$key-1]['birthday_newer']) {
-        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
-          $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
-          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
-            $upcoming .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
-          }
-          $upcoming .= "</tr>\n";
+        $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+        if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+          $upcoming .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
         }
+        $upcoming .= "</tr>\n";
       } else {
-        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
-          $upcoming .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
-          $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
-          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
-            $upcoming .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
-          }
-          $upcoming .= "</tr>\n";
+        $upcoming .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
+        $upcoming .= "<tr><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+        if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+          $upcoming .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
         }
+        $upcoming .= "</tr>\n";
       }
     }
   }
@@ -123,40 +70,33 @@ function birthdayusers_init() {
     $passed = '';
     foreach ($usersarray['past'] as $key => $user) {
       if ($user['birthday_newer'] == $usersarray['past'][$key-1]['birthday_newer']) {
-        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
-          $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
-          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
-            $passed .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
-          }
-          $passed .= "</tr>\n";
+        $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+        if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+          $passed .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
         }
+        $passed .= "</tr>\n";
       } else {
-        if ($user['birthday_share'] == 1 || current_user_can('activate_plugins')) {
-          $passed .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
-          $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
-          if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
-            $passed .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
-          }
-          $passed .= "</tr>\n";
+        $passed .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
+        $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
+        if ($user['birthday_age']==1 || current_user_can('activate_plugins')) {
+          $passed .= "<td>(".age($user['birthday_date']).__('y', 'wp-birthday-users').")</td>";
         }
+        $passed .= "</tr>\n";
       }
     }
   }
-  if (isset($_REQUEST["rebuild"])) {
-    write2file(merge2ical(plugin_dir_path(__FILE__)."icals"), $upload['basedir']."/birthday.ics");
-    $text .= __('Birthdays rebuild.', 'wp-birthday-users');
-  }
+  $text .= $usersarray['info']['text'];
   if(!empty($text)) { echo '<!-- Last Action --><div id="message" class="updated fade"><p>'.$text.'</p></div>'; }
 ?>
   <div class="wrap">
     <div id="icon-wp-birthday-users" class="icon32"><br /></div>
     <h2><?php _e('Birthdays', 'wp-birthday-users'); echo (current_user_can('activate_plugins')?"<span class=\"rebuild\"><a href=\"?".$_SERVER['QUERY_STRING']."&amp;rebuild\">".__('rebuild birthdays', 'wp-birthday-users')."</a> - <a href=\"options-general.php?page=".$pluginname[0]."/config.php\">".__('Settings')."</a></span>":"") ?></h2>
     <ul>
-      <li><em><?php printf(__('%1$s</em> of the %2$s registered user filled in there birthday.', 'wp-birthday-users'), $usersbirthday, count($blogusers)); ?></li>
-      <li><strong><?php _e('Average age', 'wp-birthday-users'); ?>:</strong> <em><?php echo ($usersbirthday != 0 ?round($averageage/$usersbirthday, 1):"") ?></em></li>
-      <li><strong><?php _e('Oldest user', 'wp-birthday-users'); ?>:</strong> <em><?php echo $oldest_name ?></em></li>
-      <li><strong><?php _e('Youngest user', 'wp-birthday-users'); ?>:</strong> <em><?php echo $youngest_name ?></em></li>
-      <li><strong><?php _e('Birthdays ICAL', 'wp-birthday-users'); ?>:</strong> <em><a href="<?php echo $upload['baseurl']."/birthday.ics" ?>">birthday.ics</a></em></li>
+      <li><em><?php printf(__('%1$s</em> of the %2$s registered user filled in there birthday.', 'wp-birthday-users'), $usersbirthday, $usersarray['info']['total_users']); ?></li>
+      <li><strong><?php _e('Average age', 'wp-birthday-users'); ?>:</strong> <em><?php echo ($usersbirthday != 0 ?round($usersarray['info']['average_age']/$usersbirthday, 1):"") ?></em></li>
+      <li><strong><?php _e('Oldest user', 'wp-birthday-users'); ?>:</strong> <em><?php echo $usersarray['info']['oldest'] ?></em></li>
+      <li><strong><?php _e('Youngest user', 'wp-birthday-users'); ?>:</strong> <em><?php echo $usersarray['info']['youngest'] ?></em></li>
+      <li><strong><?php _e('Birthdays ICAL', 'wp-birthday-users'); ?>:</strong> <em><a href="<?php echo $usersarray['info']['baseurl']; ?>">birthday.ics</a></em></li>
     </ul>
     <div class="metabox-holder">
       <div class="postbox">
@@ -288,13 +228,14 @@ function birthdayusers_options() {
   if (isset($_POST['submit']) ) {    
     // Options Array Update
     $optionarray_def = array (
-      'bu_display' => $_POST['bu_display'],
+      'bu_display' => ($_POST['bu_choose'] == NULL?$_POST['bu_display']:$_POST['bu_choose']),
       'bu_view'    => $_POST['bu_view'],
       'bu_desc'    => $_POST['bu_desc']
     );
     $update_db_options = update_option('birthdayusers_options', $optionarray_def);
     if($update_db_options) {
-      $text = '<font color="green">'.__('Options Updated', 'wp-birthday-users').'</font>';
+      $usersarray = birthdayslist(true);
+      $text = '<font color="green">'.$usersarray['info']['text'].'<br />'.__('Options Updated', 'wp-birthday-users').'</font>';
     }
     if(empty($text)) {
       $text = '<font color="red">'.__('No Options Updated/Changed', 'wp-birthday-users').'</font>';
@@ -303,6 +244,21 @@ function birthdayusers_options() {
   if(!empty($text)) { echo '<!-- Last Action --><div id="message" class="updated fade"><p>'.$text.'</p></div>'; }
 ?>
 <!-- Birthday Users Options -->
+    <script type="text/javascript">
+      var $j = jQuery.noConflict();
+      $j(function() {
+        if($j('#bu_choose:checked').length == 1) {
+          $j("#bu_display").attr("disabled","disabled");
+        }
+        $j('#bu_choose').click(function() {
+          if($j('#bu_choose:checked').length == 1) {
+            $j("#bu_display").attr("disabled","disabled");
+          } else {
+            $j("#bu_display").removeAttr("disabled");
+          }
+        });
+      });
+    </script>
 <form method="post" action="?<?php echo $_SERVER['QUERY_STRING'] ?>">
   <?php wp_nonce_field('wp-birthday-users_options'); ?>
   <div class="wrap">
@@ -310,6 +266,13 @@ function birthdayusers_options() {
     <h2><?php _e('Birthday Users Options', 'wp-birthday-users'); ?></h2>
     <h3><?php _e('Default Settings', 'wp-birthday-users'); ?></h3> 
     <table class="form-table">
+      <tr>
+        <td valign="top" width="200px"><strong><?php _e('Use the users display name', 'wp-birthday-users'); ?></strong></td>
+        <td>
+          <input type="checkbox" name="bu_choose" id="bu_choose" value="data->display_name"<?php checked( $optionarray_def['bu_display'], 'data->display_name' ); ?> />
+          <p><?php _e('The system will use the Display name selected by the user.', 'wp-birthday-users'); ?></p>
+        </td>
+      </tr>
       <tr>
         <td valign="top" width="200px"><strong><?php _e('Display name in ICAL:', 'wp-birthday-users'); ?></strong></td>
         <td>
