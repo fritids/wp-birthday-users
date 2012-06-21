@@ -5,141 +5,141 @@ msgstr ""
 "Project-Id-Version: wp birthday users 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
 "POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
-"PO-Revision-Date: 2012-06-21 15:42+0100\n"
+"PO-Revision-Date: 2012-06-21 15:44+0100\n"
 "Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: wp-birthday-users.php:29
 msgid "Users Birthdays"
-msgstr "Anniversaires"
+msgstr "Geburtstage"
 
 #: wp-birthday-users.php:31
 msgid "Birthdays Options"
-msgstr "Options d'anniversaire"
+msgstr "Geburtstage Optionen"
 
 #: wp-birthday-users.php:138
 msgid "y"
-msgstr "a"
+msgstr "j"
 
 #: wp-birthday-users.php:147
 msgid "Birthdays rebuild."
-msgstr "Anniversaires reconstruit."
+msgstr "Geburtstage wieder aufzubauen."
 
 #: wp-birthday-users.php:153
 msgid "Birthdays"
-msgstr "Anniversaires"
+msgstr "Geburtstage"
 
 #: wp-birthday-users.php:153
 msgid "rebuild birthdays"
-msgstr "reconstruire anniversaires"
+msgstr "Wiederaufbau Geburtstage"
 
 #: wp-birthday-users.php:155
 msgid "%1$s</em> of the %2$s registered user filled in there birthday."
-msgstr "%1$s</em> de l'enregistrée %2$s a rempli l'anniversaire."
+msgstr "%1$s</em> der %2$s registrierte Benutzer dort Geburtstag gefüllt."
 
 #: wp-birthday-users.php:156
 msgid "Average age"
-msgstr "Moyenne d'â"
+msgstr "Durchschnittsalter"
 
 #: wp-birthday-users.php:157
 msgid "Oldest user"
-msgstr "l'Ancien"
+msgstr "ältester Benutzer"
 
 #: wp-birthday-users.php:158
 msgid "Youngest user"
-msgstr "Le jeune"
+msgstr "jüngster Benutzer"
 
 #: wp-birthday-users.php:159
 msgid "Birthdays ICAL"
-msgstr "ICAL-Anniversaires"
+msgstr "Geburtstage ICAL"
 
 #: wp-birthday-users.php:163
 msgid "Upcoming birthdays"
-msgstr "Anniversaires àenir"
+msgstr "Die nächsten Geburtstage"
 
 #: wp-birthday-users.php:173
 msgid "Passed birthdays"
-msgstr "Anniversaires pass"
+msgstr "Bereits verjährt"
 
 #: wp-birthday-users.php:249
 msgid "Date of birth"
-msgstr "Date de naissance"
+msgstr "Geburtsdatum"
 
 #: wp-birthday-users.php:253
 msgid "Birthday"
-msgstr "Anniversaire"
+msgstr "Geburtstag"
 
 #: wp-birthday-users.php:260
 msgid "Share anniversary info"
-msgstr "Partager l'info anniversaire"
+msgstr "Anteil Jubiläum info"
 
 #: wp-birthday-users.php:264
 msgid "Share age info"
-msgstr "Partager l'infos â"
+msgstr "Informationen zur Aktie Alter"
 
 #: wp-birthday-users.php:265
 msgid "Show your age: %d y, and this only if you share your anniversary info."
-msgstr "Montrez votre âge: %d ans, et ce, seulement si vous partagez vos informations anniversaire."
+msgstr "Zeigen Sie Ihr Alter: %d j, und dies nur, wenn Sie Ihre Jahrestag info."
 
 #: wp-birthday-users.php:297
 msgid "Options Updated"
-msgstr "Mise à jour des options"
+msgstr "Aktualisiert Optionen"
 
 #: wp-birthday-users.php:300
 msgid "No Options Updated/Changed"
-msgstr "Aucune option  est changé"
+msgstr "Keine Optionen Aktualisiert/Geändert"
 
 #: wp-birthday-users.php:310
 msgid "Birthday Users Options"
-msgstr "Birthday Users Options"
+msgstr "Birthday Users Optionen"
 
 #: wp-birthday-users.php:311
 msgid "Default Settings"
-msgstr "Paramètres Généraux"
+msgstr "Allgemeine Einstellungen"
 
 #: wp-birthday-users.php:323
 msgid "Use the users display name"
-msgstr "Utilisez le nom d'utilisateur"
+msgstr "Verwenden Sie den Benutzer Namen"
 
 #: wp-birthday-users.php:327
 msgid "The system will use the Display name selected by the user."
-msgstr "Le système utilisera le nom d'affichage choisi par l'utilisateur."
+msgstr "Das System verwendet angezeigten Namen durch den Benutzer ausgewählt."
 
 #: wp-birthday-users.php:314
 msgid "Display name in ICAL:"
-msgstr "Afficher le nom dans iCal:"
+msgstr "Anzeigenamen in iCal:"
 
 #: wp-birthday-users.php:324
 msgid "Choose which name will be used for the description in the ical-file"
-msgstr "Choisissez quel nom sera utilisé pour la description dans le fichier iCal"
+msgstr "Wählen Sie, welche Namen für die Beschreibung wird in der iCal-Datei verwendet werden"
 
 #: wp-birthday-users.php:328
 msgid "Select the group that can see the birthday page overview:"
-msgstr "Sélectionnez le groupe qui permet de voir la page d'anniversaire:"
+msgstr "Wählen Sie die Gruppe, die den Geburtstag Überblick Seite sehen können:"
 
 #: wp-birthday-users.php:331
 msgid "This will show the link: "
-msgstr "Cela fera apparaître le lien: "
+msgstr "Dadurch wird der Link:"
 
 #: wp-birthday-users.php:332
 msgid "Ages will only be visible if the user choosed to share it or if you are administrator"
-msgstr "L'âge ne sera visible que si l'utilisateur a choisi de le partager ou si vous êtes administrateur"
+msgstr "Das Alter ist nur sichtbar, wenn der Benutzer teilt diese Informationen oder wenn Sie ein Administrator sind"
 
 #: functions.php:53
 msgid "Birthday of "
-msgstr "Anniversaire de "
+msgstr "Geburtstag von "
 
 #: functions.php:53
 msgid " born on "
-msgstr " né le "
+msgstr " geboren am "
 
 #: functions.php:60
 msgid "Birthday "
-msgstr "Anniversaire "
+msgstr "Geburtstag"
 

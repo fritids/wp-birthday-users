@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: wp birthday users 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
 "POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
-"PO-Revision-Date: 2012-06-14 10:43+0100\n"
+"PO-Revision-Date: 2012-06-21 15:39+0100\n"
 "Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,71 +16,131 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: \\\\nasan1n\\internal\\wp-content\\plugins\\wp-birthday-users\n"
 
-#: wp-birthday-users.php:25
+#: wp-birthday-users.php:29
 msgid "Users Birthdays"
 msgstr "Verjaardagen"
 
-#: wp-birthday-users.php:103
+#: wp-birthday-users.php:31
+msgid "Birthdays Options"
+msgstr "Verjaardag Opties"
+
+#: wp-birthday-users.php:138
 msgid "y"
 msgstr "j"
 
-#: wp-birthday-users.php:109
+#: wp-birthday-users.php:147
 msgid "Birthdays rebuild."
 msgstr "Verjaardagen heropgebouwd."
 
-#: wp-birthday-users.php:115
+#: wp-birthday-users.php:153
 msgid "Birthdays"
 msgstr "Verjaardagen"
 
-#: wp-birthday-users.php:115
+#: wp-birthday-users.php:153
 msgid "rebuild birthdays"
 msgstr "herbouw verjaardagen"
 
-#: wp-birthday-users.php:117
+#: wp-birthday-users.php:155
 msgid "%1$s</em> of the %2$s registered user filled in there birthday."
 msgstr "%1$s</em> ingevulde verjaardagen van de %2$s geregistreerde gebruikers."
 
-#: wp-birthday-users.php:118
+#: wp-birthday-users.php:156
 msgid "Average age"
 msgstr "Gemiddelde leeftijd"
 
-#: wp-birthday-users.php:119
+#: wp-birthday-users.php:157
 msgid "Oldest user"
 msgstr "Oudste gebruiker"
 
-#: wp-birthday-users.php:120
+#: wp-birthday-users.php:158
 msgid "Youngest user"
 msgstr "Jongste gebruiker"
 
-#: wp-birthday-users.php:121
+#: wp-birthday-users.php:159
 msgid "Birthdays ICAL"
 msgstr "Verjaardags-ical"
 
-#: wp-birthday-users.php:125
+#: wp-birthday-users.php:163
 msgid "Upcoming birthdays"
 msgstr "Komende jarige"
 
-#: wp-birthday-users.php:135
+#: wp-birthday-users.php:173
 msgid "Passed birthdays"
 msgstr "Reeds verjaard"
 
-#: wp-birthday-users.php:198
+#: wp-birthday-users.php:249
 msgid "Date of birth"
 msgstr "Geboortedatum"
 
-#: wp-birthday-users.php:202
+#: wp-birthday-users.php:253
 msgid "Birthday"
 msgstr "Verjaardag"
 
-#: wp-birthday-users.php:209
+#: wp-birthday-users.php:260
 msgid "Share anniversary info"
 msgstr "Deel verjaardagsinfo"
 
-#: wp-birthday-users.php:212
+#: wp-birthday-users.php:264
 msgid "Share age info"
 msgstr "Deel leeftijdsinfo"
 
-#: wp-birthday-users.php:215
+#: wp-birthday-users.php:265
 msgid "Show your age: %d y, and this only if you share your anniversary info."
 msgstr "Toont je leeftijd: %d j, en dit enkel als je verjaardagsinfo deelt."
+
+#: wp-birthday-users.php:297
+msgid "Options Updated"
+msgstr "Instellingen opgeslaan"
+
+#: wp-birthday-users.php:300
+msgid "No Options Updated/Changed"
+msgstr "Geen Opties Aangepast/Gewijzigd"
+
+#: wp-birthday-users.php:310
+msgid "Birthday Users Options"
+msgstr "Birthday Users Instellingen"
+
+#: wp-birthday-users.php:311
+msgid "Default Settings"
+msgstr "Algemene instellingen"
+
+#: wp-birthday-users.php:323
+msgid "Use the users display name"
+msgstr "Gebruik de schermnaam"
+
+#: wp-birthday-users.php:327
+msgid "The system will use the Display name selected by the user."
+msgstr "Het systeem neemt de schermnaam gekozen door de gebruiker."
+
+#: wp-birthday-users.php:314
+msgid "Display name in ICAL:"
+msgstr "Naamweergave in de ICAL:"
+
+#: wp-birthday-users.php:324
+msgid "Choose which name will be used for the description in the ical-file"
+msgstr "Kies welk naamweergave gebruikt zal worden als beschrijving in het ical-bestand"
+
+#: wp-birthday-users.php:328
+msgid "Select the group that can see the birthday page overview:"
+msgstr "Kies de groep die de verjaardagspagina kan zien:"
+
+#: wp-birthday-users.php:331
+msgid "This will show the link: "
+msgstr "Dit zal volgende link tonen: "
+
+#: wp-birthday-users.php:332
+msgid "Ages will only be visible if the user choosed to share it or if you are administrator"
+msgstr "Ouderdom zal enkel zichtbaar zijn als de gebruiker deze info deelt of als je een beheerder bent"
+
+#: functions.php:53
+msgid "Birthday of "
+msgstr "Verjaardag van "
+
+#: functions.php:53
+msgid " born on "
+msgstr " geboren op "
+
+#: functions.php:60
+msgid "Birthday "
+msgstr "Verjaardag "
 

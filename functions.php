@@ -33,8 +33,102 @@ function deletefile($file) {
   unlink($file);
 }
 
+### Function: Get Permision number of a group
+function bu_permLevel($permlevel='administrator') {
+  $number = 8;
+  if (isset($permlevel)){
+    $role = get_role( $permlevel );
+    for ($i=0; $i < 9; $i++) {
+      if (array_key_exists("level_$i", $role->capabilities)) {
+        $number = $i;
+      }
+    }
+  }
+  return $number;
+}
+
+### Function: set a value based on saved option
+function getUserMetaValue($display='first_name,last_name', $user_id) {
+  $display = ($display == NULL?'first_name,last_name':$display);
+  $user = get_user_to_edit($user_id);
+  $parts = explode(",", $display);
+  if (count($parts) < 2) {
+    $value = $user->$parts[0];
+  } else {
+    $value = $user->$parts[0]." ".$user->$parts[1];
+  }
+  if ($value == "" || $value == " ") {
+    $value = $user->data->display_name;
+  }
+  return $value;
+}
+
+function birthdayslist($rebuild=false) {
+  $optionarray_def = array();
+  $optionarray_def = get_option('birthdayusers_options');
+  if (isset($rebuild)) {
+    foreach(scandir(plugin_dir_path(__FILE__)."icals") as $item){
+      if(is_file(plugin_dir_path(__FILE__)."icals/$item")){
+        deletefile(plugin_dir_path(__FILE__)."icals/$item");
+      } 
+    }
+  }
+  $blogusers = get_users('orderby=ID');
+  $usersarray['info']['youngest'] = $usersarray['info']['oldest'] = "";
+  $youngest = $oldest = NULL;
+  $upload = wp_upload_dir();
+  $usersarray['info']['basedir'] = $upload['basedir']."/birthday.ics";
+  $usersarray['info']['baseurl'] = $upload['baseurl']."/birthday.ics";
+  foreach ($blogusers as $user) {
+    $birthday      = get_user_meta($user->ID, 'birthday_date', true);
+    $nickname      = get_user_meta($user->ID, 'nickname', true);
+    $birthdayshare = get_user_meta($user->ID, 'birthday_share', true);
+    $birthdayage   = get_user_meta($user->ID, 'birthday_age', true);
+    $changes       = get_user_meta($user->ID, 'birthday_change', true);
+    $first_name    = get_user_meta($user->ID, 'first_name', true);
+    $last_name     = get_user_meta($user->ID, 'last_name', true);
+    if ($birthday != "") {
+      if ($birthdayshare == 1 || current_user_can('activate_plugins')) {
+        $date = preg_split("/\//", $birthday);
+        $birthdate = ($date[2]<10?"0".$date[2]:$date[2])."-".($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]);
+        if ($oldest == NULL) {
+          $oldest = $birthdate;
+          $usersarray['info']['oldest'] = ($nickname!= ""?$nickname:$user->user_login);
+        }
+        if (isset($rebuild) && $birthdayshare == 1) {
+          write2file(birthday2ical($birthday, $user->ID, $birthdayage, $changes, $optionarray_def['bu_display']), plugin_dir_path(__FILE__)."icals/b2i_".$user->user_login);
+        }
+        $usersarray[(($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]) >= date('m-d')?"come":"past")][$user->ID] = array(
+          'birthday_user'  => getUserMetaValue($optionarray_def['bu_display'], $user->ID),
+          'birthday_date'  => (($birthdayage==1 || current_user_can('activate_plugins'))?$birthday:"<span class=\"protected\">".$date[0]."/".$date[1]."/</span>"),
+          'birthday_share' => $birthdayshare,
+          'birthday_age'   => $birthdayage,
+          'birthday_sort'  => ($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]),
+          'birthday_newer' => ($date[1]<10?"0".$date[1]:$date[1])
+        );
+        $usersarray['info']['average_age'] += age($birthday);
+          
+        if ($birthdate < $oldest) {
+          $oldest = $birthdate;
+          $usersarray['info']['oldest'] = ($nickname!= ""?$nickname:$user->user_login);
+        }
+        if ($birthdate > $youngest) {
+          $youngest = $birthdate;
+          $usersarray['info']['youngest'] = ($nickname!= ""?$nickname:$user->user_login);
+        }
+      }
+    }
+  }
+  $usersarray['info']['total_users'] = count($blogusers);
+  if (isset($rebuild)) {
+    write2file(merge2ical(plugin_dir_path(__FILE__)."icals"), $upload['basedir']."/birthday.ics");
+    $usersarray['info']['text'] .= __('Birthdays rebuild.', 'wp-birthday-users');
+  }
+  return $usersarray;
+}
+
 ### Function: create a ical-content for one user
-function birthday2ical($date, $user_id, $birthday_age, $sequence) {
+function birthday2ical($date, $user_id, $birthday_age, $sequence, $display) {
 //DTSTART;TZID=".get_option('timezone_string').":".$date[2].($date[1]<10?"0".$date[1]:$date[1]).($date[0]<10?"0".$date[0]:$date[0])."T090000Z
 //DTEND;TZID=".get_option('timezone_string').":".$date[2].($date[1]<10?"0".$date[1]:$date[1]).($date[0]<10?"0".$date[0]:$date[0])."T090000Z
 //CLASS:PRIVATE
@@ -46,18 +140,18 @@ DTSTART;VALUE=DATE:".($date[2]>="1970"?$date[2]:"1970").($date[1]<10?"0".$date[1
 DTEND;VALUE=DATE:".($date[2]>="1970"?$date[2]:"1970").($date[1]<10?"0".$date[1]:$date[1]).($date[0]<10?"0".$date[0]:$date[0])."
 RRULE:FREQ=YEARLY;INTERVAL=1;BYMONTHDAY=".($date[0]<10?"0".$date[0]:$date[0]).";BYMONTH=".($date[1]<10?"0".$date[1]:$date[1])."
 DTSTAMP:".date('Ymd\THis\Z')."
-ORGANIZER;CN=".get_user_meta($user_id, 'first_name', true)." ".get_user_meta($user_id, 'last_name', true).":MAILTO:".$user_info->user_email."
+ORGANIZER;CN=".getUserMetaValue($display, $user_id).":MAILTO:".$user_info->user_email."
 UID:uuid:".md5($user_id)."
 CLASS:PUBLIC
 CREATED:20120528T154008Z
-DESCRIPTION:Verjaardag van ".get_user_meta($user_id, 'first_name', true)." ".get_user_meta($user_id, 'last_name', true).($birthday_age==1?" geboren op ".$date[2]:"")."
+DESCRIPTION:".__('Birthday of ', 'wp-birthday-users').getUserMetaValue($display, $user_id).($birthday_age==1?__(' born on ', 'wp-birthday-users').$date[2]:"")."
 LAST-MODIFIED:".date('Ymd\THis\Z')."
 X-MICROSOFT-CDO-BUSYSTATUS:FREE
 X-FUNAMBOL-ALLDAY:1
 LOCATION:Gent
 SEQUENCE:".$sequence."
 STATUS:CONFIRMED
-SUMMARY:Verjaardag ".get_user_meta($user_id, 'nickname', true)."
+SUMMARY:".__('Birthday ', 'wp-birthday-users').get_user_meta($user_id, 'nickname', true)."
 TRANSP:OPAQUE
 END:VEVENT";
  return $content;

@@ -5,6 +5,9 @@
 #icon-wp-birthday-users {
 	background: transparent url(images/birthday-admin-icon.png) no-repeat;
 }
+.input {
+  position: relative;
+}
 .rebuild {
   padding-left: 20px;
   font-size: small;
@@ -22,6 +25,12 @@ h4 {
   background: transparent url(images/birthday-passed.png) 0 0px no-repeat;
   display:inline-block;
   padding: 0 0 2px 20px;
+}
+.protected  {
+  background: transparent url(images/protected.png) 0 0px no-repeat;
+  background-position: right;
+  display:inline-block;
+  padding: 0 28px 0 2px;
 }
 table {
   padding: 5px;
