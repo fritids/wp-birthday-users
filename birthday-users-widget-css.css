@@ -1,0 +1,31 @@
+/*
+ *  * WP Birthday Users style sheet for the widget
+ *   * */
+.wp-birthday {
+  position: relative;
+}
+.section {
+  width: 185px;
+}
+.section>h4 {
+  font-weight: bold;
+}
+.section>div {
+  padding-left: 5px;
+}
+.section>div.birthday {
+  background: transparent url(images/present.png) 1px 0 no-repeat;
+  padding-left: 18px;
+}
+.section>div>div {
+  float:right;
+}
+.birthdaylink {
+  position: absolute;
+  top: 26px;
+  left: 89%;
+}
+.birthdaylink>a {
+  background: transparent url(images/birthday.png) 1px 0 no-repeat;
+  padding: 2px 2px 2px 18px;  
+}
