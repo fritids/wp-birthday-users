@@ -66,7 +66,7 @@ function birthdayusers_init() {
     usort($birthdaypast, 'date_sort');
     $passed = '';
     foreach ($birthdaypast as $key => $user) {
-      if ($user['birthday_newer'] != $birthdaypast[getPrevKey($key, $birthdaypast)]['birthday_newer'] || count($birthdaypast) == 1) {
+      if ($user['birthday_newer'] != $birthdaypast[getPrevKey($key, $birthdaypast)]['birthday_newer'] || count($birthdaypast) == 1 || getPrevKey($key, $birthdaypast) == "") {
         $passed .= "<th>".date('M', mktime(0,0,0,$user['birthday_newer'],1))."</th>\n";
       }
       $passed .= "<tr class=\"user\"><td class=\"date\">".$user['birthday_date']."</td><td> - </td><td class=\"username\">".$user['birthday_user']."</td>";
