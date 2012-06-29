@@ -139,3 +139,47 @@ msgstr ""
 #: functions.php:60
 msgid "Birthday "
 msgstr ""
+
+#: widget.php:7
+msgid "Display a list of birthdays"
+msgstr ""
+
+#: widget.php:36
+msgid "Sort by month"
+msgstr ""
+
+#: widget.php:40
+msgid "Show upcoming birthdays"
+msgstr ""
+
+#: widget.php:44
+msgid "How many upcoming birthdays"
+msgstr ""
+
+#: widget.php:48
+msgid "Show past birthdays"
+msgstr ""
+
+#: widget.php:52
+msgid "How many past birthdays"
+msgstr ""
+
+#: widget.php:56
+msgid "Hide widget if no birthdays today"
+msgstr ""
+
+#: widget.php:62
+msgid "Show ical download link"
+msgstr ""
+
+#: widget.php:94
+msgid "Download Birthday calendar"
+msgstr ""
+
+#: widget.php:101
+msgid "Today"
+msgstr ""
+
+#: widget.php:62
+msgid "No birthdays today"
+msgstr ""

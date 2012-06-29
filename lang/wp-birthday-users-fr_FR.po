@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: wp birthday users 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
 "POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
-"PO-Revision-Date: 2012-06-21 15:42+0100\n"
+"PO-Revision-Date: 2012-06-29 11:25+0100\n"
 "Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -61,11 +61,11 @@ msgstr "ICAL-Anniversaires"
 
 #: wp-birthday-users.php:163
 msgid "Upcoming birthdays"
-msgstr "Anniversaires àenir"
+msgstr "Anniversaires à venir"
 
 #: wp-birthday-users.php:173
 msgid "Passed birthdays"
-msgstr "Anniversaires pass"
+msgstr "Anniversaires passés"
 
 #: wp-birthday-users.php:249
 msgid "Date of birth"
@@ -142,4 +142,48 @@ msgstr " né le "
 #: functions.php:60
 msgid "Birthday "
 msgstr "Anniversaire "
+
+#: widget.php:7
+msgid "Display a list of birthdays"
+msgstr "Afficher une liste des anniversaires"
+
+#: widget.php:36
+msgid "Sort by month"
+msgstr "Trier par mois"
+
+#: widget.php:40
+msgid "Show upcoming birthdays"
+msgstr "Montrer anniversaires à venir"
+
+#: widget.php:44
+msgid "How many upcoming birthdays"
+msgstr "Combien anniversaires à venir"
+
+#: widget.php:48
+msgid "Show past birthdays"
+msgstr "Montrer anniversaires passés"
+
+#: widget.php:52
+msgid "How many past birthdays"
+msgstr "Combien anniversaires passés"
+
+#: widget.php:56
+msgid "Hide widget if no birthdays today"
+msgstr "Masquer le widget si aucune année aujourd'hui"
+
+#: widget.php:62
+msgid "Show ical download link"
+msgstr "Afficher le lien télécharger iCal"
+
+#: widget.php:94
+msgid "Download Birthday calendar"
+msgstr "Télécharger le calendrier d'anniversaire"
+
+#: widget.php:101
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: widget.php:62
+msgid "No birthdays today"
+msgstr "Pas d'anniversaires aujourd'hui"
 

@@ -3,8 +3,8 @@ Contributors: omarke85
 Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
-Tested up to: 3.4
-Stable tag: 0.1.6
+Tested up to: 3.4.1
+Stable tag: 0.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,8 @@ As admin you can see an overview of all birthdays, with upcoming, passed and wit
 > ### Caution: in version 0.1.3
 > For some reason there is 2 breakspaces in the wp-birthday-users.php at the end. Delete these to let the plugin work. (I try to fix it later)
 
+Version 0.1.7 introduce the posibility to show a widget on your page. This will show you a widget with the users whos birthday is today, and you can choose to show upcoming and past birthdays (and how many of it), also a downloadimage with to the ical.
+
 == Installation ==
 
 1. Download <a href="http://wordpress.org/extend/plugins/wp-birthday-users/">wp-birthday-users</a> to a directory on your web server. 
@@ -31,9 +33,10 @@ As admin you can see an overview of all birthdays, with upcoming, passed and wit
 4. That's it.
 5. Go to your profil and fill in your birthday. Save it.
 6. This will create a birthday.ics-file in your upload-directory of wordpress.
+7. Additional you can add a widget on your blog, or edit the settings.
 
 If you upgrade:
-Run rebuild-script found on the birthdays overview page.
+Run rebuild-script found on the birthdays overview page. (since 0.1.6 this is automatic when saving something in the settingspage)
 
 == Frequently Asked Questions ==
 
@@ -59,6 +62,10 @@ For some reason there went 2 breakspaces in the core plugin file. You can edit t
 I'm sorry for this.
 
 == Changelog ==
+
+= 0.1.7 =
+* Fixed birthday view (there were errors in the view when only 1 user, etc...)
+* Added widget posibility
 
 = 0.1.6 =
 * Fixed empty names in ical-file
@@ -95,14 +102,17 @@ I'm sorry for this.
 
 == Upgrade Notice ==
 
+= 0.1.7 =
+Fix with admin view page + added widget. Upgrage immediately!
+
 = 0.1.6 =
-Fix for empty names + additional functionality. Upgrade recommended
+Fix for empty names + additional functionality. Upgrade recommended!
 
 = 0.1.5 =
-Adds additional functionality. Upgrade recommended
+Adds additional functionality. Upgrade recommended!
 
 = 0.1.4 =
-Should fix the error in version 0.1.3 Upgrade immediately.
+Should fix the error in version 0.1.3 Upgrade immediately!
 
 = 0.1.3 =
 This version fixes some errors in the system.  Upgrade immediately.
