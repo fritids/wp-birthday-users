@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: wp birthday users 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
 "POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
-"PO-Revision-Date: 2012-06-21 15:39+0100\n"
+"PO-Revision-Date: 2012-06-29 11:26+0100\n"
 "Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -143,4 +143,48 @@ msgstr " geboren op "
 #: functions.php:60
 msgid "Birthday "
 msgstr "Verjaardag "
+
+#: widget.php:7
+msgid "Display a list of birthdays"
+msgstr "Toon een lijst van jarige, komende verjaardagen en reeds verjaarden"
+
+#: widget.php:36
+msgid "Sort by month"
+msgstr "Toon volgens maand"
+
+#: widget.php:40
+msgid "Show upcoming birthdays"
+msgstr "Toon komende jarigen"
+
+#: widget.php:44
+msgid "How many upcoming birthdays"
+msgstr "Hoeveel komende jarigen"
+
+#: widget.php:48
+msgid "Show past birthdays"
+msgstr "Toon reeds verjaarden"
+
+#: widget.php:52
+msgid "How many past birthdays"
+msgstr "Hoeveel reeds verjaard"
+
+#: widget.php:56
+msgid "Hide widget if no birthdays today"
+msgstr "Verberg widget indien geen jarige vandaag"
+
+#: widget.php:62
+msgid "Show ical download link"
+msgstr "Toon ical download link"
+
+#: widget.php:94
+msgid "Download Birthday calendar"
+msgstr "Download Verjaardagskalender"
+
+#: widget.php:101
+msgid "Today"
+msgstr "Vandaag"
+
+#: widget.php:62
+msgid "No birthdays today"
+msgstr "Geen jarigen vandaag"
 

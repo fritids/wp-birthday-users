@@ -33,6 +33,24 @@ function deletefile($file) {
   unlink($file);
 }
 
+### Function: get previous key in array
+function getPrevKey($key, $hash = array()){
+  $keys = array_keys($hash);
+  $found_index = array_search($key, $keys);
+  if ($found_index === false || $found_index === 0)
+    return false;
+  return $keys[$found_index-1];
+}
+
+### Function: get next key in array
+function getNextKey($key, $hash = array()) {
+  $keys = array_keys($hash);
+  $found_index = array_search($key, $keys);
+  if ($found_index === false)
+    return false;
+  return $keys[$found_index+1];
+}
+
 ### Function: Get Permision number of a group
 function bu_permLevel($permlevel='administrator') {
   $number = 8;
@@ -50,7 +68,8 @@ function bu_permLevel($permlevel='administrator') {
 ### Function: set a value based on saved option
 function getUserMetaValue($display='first_name,last_name', $user_id) {
   $display = ($display == NULL?'first_name,last_name':$display);
-  $user = get_user_to_edit($user_id);
+  $user = get_user_by('id', $user_id);
+  //$user = get_user_to_edit($user_id);
   $parts = explode(",", $display);
   if (count($parts) < 2) {
     $value = $user->$parts[0];
@@ -66,7 +85,7 @@ function getUserMetaValue($display='first_name,last_name', $user_id) {
 function birthdayslist($rebuild=false) {
   $optionarray_def = array();
   $optionarray_def = get_option('birthdayusers_options');
-  if (isset($rebuild)) {
+  if (isset($rebuild) && $rebuild) {
     foreach(scandir(plugin_dir_path(__FILE__)."icals") as $item){
       if(is_file(plugin_dir_path(__FILE__)."icals/$item")){
         deletefile(plugin_dir_path(__FILE__)."icals/$item");
@@ -79,6 +98,7 @@ function birthdayslist($rebuild=false) {
   $upload = wp_upload_dir();
   $usersarray['info']['basedir'] = $upload['basedir']."/birthday.ics";
   $usersarray['info']['baseurl'] = $upload['baseurl']."/birthday.ics";
+  $usersarray['info']['today'] = 0;
   foreach ($blogusers as $user) {
     $birthday      = get_user_meta($user->ID, 'birthday_date', true);
     $nickname      = get_user_meta($user->ID, 'nickname', true);
@@ -95,7 +115,7 @@ function birthdayslist($rebuild=false) {
           $oldest = $birthdate;
           $usersarray['info']['oldest'] = ($nickname!= ""?$nickname:$user->user_login);
         }
-        if (isset($rebuild) && $birthdayshare == 1) {
+        if (isset($rebuild) && $rebuild && $birthdayshare == 1) {
           write2file(birthday2ical($birthday, $user->ID, $birthdayage, $changes, $optionarray_def['bu_display']), plugin_dir_path(__FILE__)."icals/b2i_".$user->user_login);
         }
         $usersarray[(($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]) >= date('m-d')?"come":"past")][$user->ID] = array(
@@ -106,8 +126,10 @@ function birthdayslist($rebuild=false) {
           'birthday_sort'  => ($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0]),
           'birthday_newer' => ($date[1]<10?"0".$date[1]:$date[1])
         );
+        if ((($date[1]<10?"0".$date[1]:$date[1])."-".($date[0]<10?"0".$date[0]:$date[0])) === date('m-d')) {
+          $usersarray['info']['today']++;
+        }
         $usersarray['info']['average_age'] += age($birthday);
-          
         if ($birthdate < $oldest) {
           $oldest = $birthdate;
           $usersarray['info']['oldest'] = ($nickname!= ""?$nickname:$user->user_login);
@@ -120,7 +142,7 @@ function birthdayslist($rebuild=false) {
     }
   }
   $usersarray['info']['total_users'] = count($blogusers);
-  if (isset($rebuild)) {
+  if (isset($rebuild) && $rebuild) {
     write2file(merge2ical(plugin_dir_path(__FILE__)."icals"), $upload['basedir']."/birthday.ics");
     $usersarray['info']['text'] .= __('Birthdays rebuild.', 'wp-birthday-users');
   }

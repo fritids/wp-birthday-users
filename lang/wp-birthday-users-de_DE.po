@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: wp birthday users 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
 "POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
-"PO-Revision-Date: 2012-06-21 15:44+0100\n"
+"PO-Revision-Date: 2012-06-29 11:27+0100\n"
 "Last-Translator: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "Language-Team: Omar Reygaert <Omar.Reygaert@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -142,4 +142,48 @@ msgstr " geboren am "
 #: functions.php:60
 msgid "Birthday "
 msgstr "Geburtstag"
+
+#: widget.php:7
+msgid "Display a list of birthdays"
+msgstr "Zeigt eine Liste der Geburtstage"
+
+#: widget.php:36
+msgid "Sort by month"
+msgstr "Sortieren nach Monat"
+
+#: widget.php:40
+msgid "Show upcoming birthdays"
+msgstr "Zeigen Sie nächsten Geburtstage"
+
+#: widget.php:44
+msgid "How many upcoming birthdays"
+msgstr "Wie viele nächsten Geburtstage"
+
+#: widget.php:48
+msgid "Show past birthdays"
+msgstr "Zeige Bereits verjährt"
+
+#: widget.php:52
+msgid "How many past birthdays"
+msgstr "Wie viele Bereits verjährt"
+
+#: widget.php:56
+msgid "Hide widget if no birthdays today"
+msgstr "Widget ausblenden, wenn keine verjährt heute"
+
+#: widget.php:62
+msgid "Show ical download link"
+msgstr "Zeige iCal Download-Link"
+
+#: widget.php:94
+msgid "Download Birthday calendar"
+msgstr "Download Geburtstagskalender"
+
+#: widget.php:101
+msgid "Today"
+msgstr "heute"
+
+#: widget.php:62
+msgid "No birthdays today"
+msgstr "Keine Geburtstage heute"
 

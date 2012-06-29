@@ -1,6 +1,6 @@
 /*
- * WP Birthday Users style sheet for admin
- * */
+ *  * WP Birthday Users style sheet for admin
+ *   * */
 
 #icon-wp-birthday-users {
 	background: transparent url(images/birthday-admin-icon.png) no-repeat;
@@ -53,4 +53,22 @@ td{
   min-width: 175px;
   float: left;
 }
-
+.birthday {
+  background: transparent url(images/present.png) 1px 0 no-repeat;
+  padding-left: 18px;
+}
+.inputtitle  {
+  width: 190px;
+  padding: 5px 0;
+}
+.textinput {
+  width: 25px;
+}
+.inputtd {
+  text-align: center;
+}
+.inputtitle>a {
+  background: transparent url(images/birthday.png) 1px 0 no-repeat;
+  padding: 8px;
+  float: right;
+}
