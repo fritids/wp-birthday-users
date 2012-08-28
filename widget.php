@@ -74,14 +74,15 @@ class BirthdayUsersWidget extends WP_Widget {
     $usersarray = birthdayslist();
     $tocome = $usersarray['come'];
     $past = $usersarray['past'];
-    uasort($tocome, 'date_sort');
-    uasort($past, 'date_sort');
+    (is_array($tocome)?uasort($tocome, 'date_sort'):"");
+    (is_array($past)?uasort($past, 'date_sort'):"");
     if ($usersarray['info']['today'] > 0 || $instance['hide_if_none'] != "on") {
       echo "\n".$before_widget."\n  ";
       echo $before_title.__('Birthdays', 'wp-birthday-users').$after_title."\n";
       if ($instance['show_link_bu'] === "on") {
         echo "<div class=\"birthdaylink\"><a href=\"".$usersarray['info']['baseurl']."\" title=\"".__('Download Birthday calendar', 'wp-birthday-users')."\"></a></div>";
       }
+      if (is_array($tocome)) {
       $t = 0;
       $number = ($instance['number_coming'] < count($tocome)?$instance['number_coming']:count($tocome));
       foreach ($tocome as $key => $user) {
@@ -113,6 +114,8 @@ class BirthdayUsersWidget extends WP_Widget {
         }
         $t++;
       }
+      }
+      if (is_array($past)) {
       $t = 0;
       foreach ($past as $key => $user) {
         if ($instance['show_past'] === "on" && $instance['number_past'] > $t) {
@@ -133,6 +136,7 @@ class BirthdayUsersWidget extends WP_Widget {
           }
         }
         $t++;
+      }
       }
       echo $after_widget;
     }
