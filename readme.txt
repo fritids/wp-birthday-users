@@ -3,8 +3,8 @@ Contributors: omarke85
 Tags: birthday, calendar, user, add-on, plugin
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HPZRXMPY99LPS&item_name=Wordpress%20plugin&item_number=wp%20birthday%20users&currency_code=EUR
 Requires at least: x.x.x
-Tested up to: 3.4.1
-Stable tag: 0.1.7
+Tested up to: 3.4.2
+Stable tag: 0.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,10 @@ I'm sorry for this.
 
 == Changelog ==
 
+= 0.1.8 =
+* Added translation Persian (thx to Alirezajamali)
+* Fixed empty strings
+
 = 0.1.7 =
 * Fixed birthday view (there were errors in the view when only 1 user, etc...)
 * Added widget posibility
@@ -101,6 +105,9 @@ I'm sorry for this.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 0.1.8 =
+Added Persian translation. Upgrade recommended
 
 = 0.1.7 =
 Fix with admin view page + added widget. Upgrage immediately!

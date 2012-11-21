@@ -1,0 +1,195 @@
+# Copyright (C) 2012 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Persian WP Birthday Users By AlirezaJamali\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/extend/plugins/wp-birthday-users\n"
+"POT-Creation-Date: 2012-06-01 14:43:47+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-11-08 18:35+0330\n"
+"Last-Translator: AlirezaJamali <alirezajamali.net>\n"
+"Language-Team: wordpress98.com <me@alirezajamali.net>\n"
+"Language: fa_IR\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: wp-birthday-users.php:29
+msgid "Users Birthdays"
+msgstr "زادروز کاربران"
+
+#: wp-birthday-users.php:31
+msgid "Birthdays Options"
+msgstr "تنظیمات زادروزها"
+
+#: wp-birthday-users.php:138
+msgid "y"
+msgstr "y"
+
+#: wp-birthday-users.php:147
+msgid "Birthdays rebuild."
+msgstr "زادروزها بازسازی شدند . "
+
+#: wp-birthday-users.php:153
+msgid "Birthdays"
+msgstr "زادروزها"
+
+#: wp-birthday-users.php:153
+msgid "rebuild birthdays"
+msgstr "بازسازی زادروزها"
+
+#: wp-birthday-users.php:155
+msgid "%1$s</em> of the %2$s registered user filled in there birthday."
+msgstr "%1$s</em> of the %2$s registered user filled in there birthday."
+
+#: wp-birthday-users.php:156
+msgid "Average age"
+msgstr "سن میانگین"
+
+#: wp-birthday-users.php:157
+msgid "Oldest user"
+msgstr "پیرترین کاربر"
+
+#: wp-birthday-users.php:158
+msgid "Youngest user"
+msgstr "جوان ترین کاربر"
+
+#: wp-birthday-users.php:159
+msgid "Birthdays ICAL"
+msgstr "Birthdays ICAL"
+
+#: wp-birthday-users.php:163
+msgid "Upcoming birthdays"
+msgstr "زادروزهای آینده"
+
+#: wp-birthday-users.php:173
+msgid "Passed birthdays"
+msgstr "زادروزها گذشته"
+
+#: wp-birthday-users.php:249
+msgid "Date of birth"
+msgstr "تاریخ زادروز"
+
+#: wp-birthday-users.php:253
+msgid "Birthday"
+msgstr "زادروز"
+
+#: wp-birthday-users.php:260
+msgid "Share anniversary info"
+msgstr "اشتراک گذاری اطلاعات سالگرد"
+
+#: wp-birthday-users.php:264
+msgid "Share age info"
+msgstr "اشتراک گذاری اطلاعات سن"
+
+#: wp-birthday-users.php:265
+msgid "Show your age: %d y, and this only if you share your anniversary info."
+msgstr "Show your age: %d y, and this only if you share your anniversary info."
+
+#: wp-birthday-users.php:297
+msgid "Options Updated"
+msgstr "تنظیمات به روزرسانی شدند . "
+
+#: wp-birthday-users.php:300
+msgid "No Options Updated/Changed"
+msgstr "هیچ تنظیمی به روزرسانی / ذخیره نشد . "
+
+#: wp-birthday-users.php:310
+msgid "Birthday Users Options"
+msgstr "تنظیمات زادروزکاربران"
+
+#: wp-birthday-users.php:311
+msgid "Default Settings"
+msgstr "تنظیمات پیش فرض"
+
+#: wp-birthday-users.php:323
+msgid "Use the users display name"
+msgstr "استفاده از نمایش نام کاربران"
+
+#: wp-birthday-users.php:327
+msgid "The system will use the Display name selected by the user."
+msgstr "سیستم از نمایش نام انتخاب شده توسط کاربراستفاده میکند. "
+
+#: wp-birthday-users.php:314
+msgid "Display name in ICAL:"
+msgstr "نمایش نام در  ICAL:"
+
+#: wp-birthday-users.php:324
+msgid "Choose which name will be used for the description in the ical-file"
+msgstr "انتخاب کنید که چه نامی در توضیحات پرونده ی ICAL استفاده شود "
+
+#: wp-birthday-users.php:328
+msgid "Select the group that can see the birthday page overview:"
+msgstr "انتخاب گروهی که بتواند صفحه ی بررسی اجمالی زادروز را ببیند : "
+
+#: wp-birthday-users.php:331
+msgid "This will show the link: "
+msgstr "این لینک نشان می دهد:"
+
+#: wp-birthday-users.php:332
+msgid ""
+"Ages will only be visible if the user choosed to share it or if you are "
+"administrator"
+msgstr ""
+"سن ها فقط در صورتی نمایش داده میشوند که کاربر آن را اشتراک گذاری کرده باشد "
+"یا شما مدیرکل باشید . "
+
+#: functions.php:53
+msgid "Birthday of "
+msgstr "زادروزِ"
+
+#: functions.php:53
+msgid " born on "
+msgstr "متولد شده در "
+
+#: functions.php:60
+msgid "Birthday "
+msgstr "زادروز"
+
+#: widget.php:7
+msgid "Display a list of birthdays"
+msgstr "نمایش یک فهرست از زادروزها"
+
+#: widget.php:36
+msgid "Sort by month"
+msgstr "مرتب سازی براساس ماه"
+
+#: widget.php:40
+msgid "Show upcoming birthdays"
+msgstr "نمایش زادروزهای آینده"
+
+#: widget.php:44
+msgid "How many upcoming birthdays"
+msgstr "نمایش چه تعداد زادروزهای آینده"
+
+#: widget.php:48
+msgid "Show past birthdays"
+msgstr "نمایش زادروزهای گذشته"
+
+#: widget.php:52
+msgid "How many past birthdays"
+msgstr "نمایش چه تعداد زادروزگذشته "
+
+#: widget.php:56
+msgid "Hide widget if no birthdays today"
+msgstr "مخفی کردن ابزارک درصورتی که امروز زادروزی نیست . "
+
+#: widget.php:62
+msgid "Show ical download link"
+msgstr "نمایش پیوند دریافت ICAL"
+
+#: widget.php:94
+msgid "Download Birthday calendar"
+msgstr "دریافت تقویم زادروز"
+
+#: widget.php:101
+msgid "Today"
+msgstr "امروز"
+
+#: widget.php:62
+msgid "No birthdays today"
+msgstr "امروز هیچ زادروزی وجود ندارد . "
