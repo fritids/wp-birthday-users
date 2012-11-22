@@ -46,15 +46,15 @@ Thanks to Omar Reygaert.
 
 = What versions of wordpress does this plugin support? =
 
-At the moment I have no idea, it's created on the last version (3.3.2) but I think this will still work on older versions.
+At the moment I have no idea, it's created since version 3.3.2, but I think this will still work on older versions.
 
 = What versions of PHP does this support? =
 
-This plugin should work wtih PHP 4.4 through last versions of php is always the best.
+This plugin should work with PHP 4.4 through last versions of php is always the best.
 
 = I upgrade from a version before 0.1.3 and I see birthdays 2 times in the ical? =
 
-Since 0.1.3 there is a change in the way the plugin saves the ical-file. If you encounter problems of duplicate events, run the "rebuild birthdays" on the overview page on "Birthday users". This will cleanupthe old usage and recreate it in the new way.
+Since 0.1.3 there is a change in the way the plugin saves the ical-file. If you encounter problems of duplicate events, run the "rebuild birthdays" on the overview page on "Birthday users". This will cleanup the old usage and recreate it in the new way.
 
 = I have version 0.1.3 but it gives an error when I activate the plugin, what to do? =
 
